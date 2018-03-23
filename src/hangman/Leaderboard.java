@@ -8,8 +8,6 @@ import java.util.List;
 public class Leaderboard
 {
 
-
-    private static final Leaderboard instance = new Leaderboard();
     private FileHandler file = new FileHandler("src/leaderboard.csv");
     private List<LeaderboardEntry> leaderboard;
 
@@ -65,6 +63,12 @@ public class Leaderboard
         leaderboard = readFile();
     }
 
+    public Leaderboard(String filepath)
+    {
+        file = new FileHandler(filepath);
+        leaderboard = readFile();
+    }
+
     private List<LeaderboardEntry> readFile()
     {
         List<LeaderboardEntry> result = new ArrayList<>();
@@ -75,7 +79,8 @@ public class Leaderboard
             String[] entries = contents.split("\n");
             for(String entry : entries)
             {
-                result.add(new LeaderboardEntry(entry));
+                if(entry.length() != 0)
+                    result.add(new LeaderboardEntry(entry));
             }
         }
         catch(IOException e)
@@ -93,11 +98,6 @@ public class Leaderboard
     public void addEntry(LeaderboardEntry entry)
     {
         leaderboard.add(entry);
-    }
-
-    public static Leaderboard getInstance()
-    {
-        return instance;
     }
 
     public String toCSV()

@@ -9,7 +9,7 @@ public class FileHandler
     private final String fileName;
     private File file;
 
-    FileHandler(String fileName) {this.fileName = fileName;}
+    public FileHandler(String fileName) {this.fileName = fileName;}
 
     /**
      * Makes new file with certain path
@@ -93,16 +93,25 @@ public class FileHandler
      *
      * @param path   path of file is wanted to be written to
      * @param object object that is been written to the file
+     * @param append Whether or not to append to the file
      */
-    public void writeToFile(String path, Object object) throws IOException
+    public void writeToFile(String path, Object object, boolean append) throws IOException
     {
-        FileWriter write = new FileWriter(path, true);
-        write.write(String.valueOf(object));
+        FileWriter write = new FileWriter(path, append);
+        write.write(object.toString());
+        write.flush();
+        write.close();
     }
 
-    public void writeToFile(Object object) throws IOException
+    /**
+     * Writes to the file
+     * @param object The thing to write
+     * @param append Whether or not to append to the file
+     * @throws IOException
+     */
+    public void writeToFile(Object object, boolean append) throws IOException
     {
-        writeToFile(fileName, object);
+        writeToFile(fileName, object, append);
     }
 
     /**

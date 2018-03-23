@@ -23,7 +23,6 @@ public class Main extends Application {
 
         Path gallows = new Path(ORIGIN, new LineTo(startX, startY+60));
 
-//        root.get
         primaryStage.setScene(new Scene(root, 500, 375));
         primaryStage.show();
 
