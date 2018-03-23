@@ -43,7 +43,7 @@ public class Hangman
     /**
      * @return wordToGuess
      */
-    private String getWordToGuess()
+    public String getWordToGuess()
     {
         return wordToGuess;
     }
