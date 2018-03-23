@@ -6,13 +6,14 @@ import java.nio.file.Paths;
 
 public class FileHandler
 {
-    private static String fileName = "src/english.txt";
-    private static File file;
+    private final String fileName;
+    private File file;
 
-    FileHandler() {}
+    FileHandler(String fileName) {this.fileName = fileName;}
 
     /**
      * Makes new file with certain path
+     *
      * @param path path of file
      */
     public void newFile(String path)
@@ -38,34 +39,37 @@ public class FileHandler
 
     /**
      * Reads the whole file of the file located in path
+     *
      * @param path path of which file wanted to be read
+     * @return The contents of the file in a very large string
      */
-    public void readWholeFile(String path)
+    public String readWholeFile(String path) throws IOException
     {
-        try
+        FileReader fileReader = new FileReader(path);
+        BufferedReader bufferedReader = new BufferedReader(fileReader);
+        StringBuilder result = new StringBuilder();
+        String line;
+        while((line = bufferedReader.readLine()) != null)
         {
-            FileReader fileReader = new FileReader(path);
-            BufferedReader bufferedReader = new BufferedReader(fileReader);
-            StringBuilder stringBuffer = new StringBuilder();
-            String line;
-            while((line = bufferedReader.readLine()) != null)
-            {
-                stringBuffer.append(line);
-                stringBuffer.append("\n");
-            }
-            fileReader.close();
+            result.append(line);
+            result.append("\n");
+        }
+        fileReader.close();
 
-            System.out.println("Contents of file:");
-            System.out.println(stringBuffer.toString());
-        }
-        catch(IOException e)
-        {
-            e.printStackTrace();
-        }
+        return result.toString();
+    }
+
+    /**
+     * Read the whole fle
+     */
+    public String readWholeFile() throws IOException
+    {
+        return readWholeFile(this.fileName);
     }
 
     /**
      * Gets line of file
+     *
      * @param line line of file in which it will return
      * @param path path of file wanted
      * @return String of the line specified
@@ -86,21 +90,19 @@ public class FileHandler
 
     /**
      * Writes to file
-     * @param path path of file is wanted to be written to
+     *
+     * @param path   path of file is wanted to be written to
      * @param object object that is been written to the file
      */
-    public void writeToFile(String path, Object object)
+    public void writeToFile(String path, Object object) throws IOException
     {
-        FileWriter write = null;
-        try
-        {
-            write = new FileWriter(path, true);
-            write.write(String.valueOf(object));
-        }
-        catch(IOException e)
-        {
-            e.printStackTrace();
-        }
+        FileWriter write = new FileWriter(path, true);
+        write.write(String.valueOf(object));
+    }
+
+    public void writeToFile(Object object) throws IOException
+    {
+        writeToFile(fileName, object);
     }
 
     /**
