@@ -12,8 +12,8 @@ public class LeaderboardTest
         Leaderboard leaderboard = new Leaderboard("src/hangman/test/testleaderboard.csv");
         System.out.println("leaderboard.toCSV() = " + leaderboard.toCSV());
 
-        leaderboard.addEntry("Miguel", 12345.1234);
-        leaderboard.addEntry("Ritik", 1315143);
+        leaderboard.addEntry("Miguel", 10);
+        leaderboard.addEntry("Ritik", 18);
         leaderboard.updateFile();
 
 

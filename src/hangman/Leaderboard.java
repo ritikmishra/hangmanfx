@@ -8,14 +8,25 @@ import java.util.List;
 public class Leaderboard
 {
 
+    /**
+     * The file where we store our leaderboard
+     *
+     * @see Leaderboard#Leaderboard(String)
+     */
     private FileHandler file = new FileHandler("src/leaderboard.csv");
+
+    /**
+     * A list of leaderboard entries
+     * Guaranteed to be sorted in descending order (where index 0 is the highest scorer) or your money back
+     */
     private List<LeaderboardEntry> leaderboard;
 
 
+    /**
+     * A bean for the info that goes with an entry in the leaderboard: Name, score, and timestamp
+     */
     public static class LeaderboardEntry
     {
-
-
         private final String name;
         private final double score;
 
@@ -97,7 +108,18 @@ public class Leaderboard
 
     public void addEntry(LeaderboardEntry entry)
     {
+        double score = entry.getScore();
+
+        for(int i = 0; i < leaderboard.size(); i++)
+        {
+            if(score > leaderboard.get(i).getScore())
+            {
+                leaderboard.add(i, entry);
+                return;
+            }
+        }
         leaderboard.add(entry);
+
     }
 
     public String toCSV()
@@ -110,6 +132,11 @@ public class Leaderboard
             result.append("\n");
         }
         return result.toString();
+    }
+
+    public List<LeaderboardEntry> getLeaderboard()
+    {
+        return leaderboard;
     }
 
     public void updateFile()
