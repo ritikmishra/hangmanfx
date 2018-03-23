@@ -6,6 +6,7 @@ public class Hangman
 {
     private int lives = 4;
     private String wordToGuess;
+    private int[] placements;
 
     Hangman()
     {
@@ -13,6 +14,7 @@ public class Hangman
         Random r = new Random();
 
         wordToGuess = fileHandler.getLine(r.nextInt(fileHandler.getFileSize(fileHandler.getFileName())), fileHandler.getFileName());
+        placements = new int[wordToGuess.length()];
     }
 
     /**
@@ -20,22 +22,29 @@ public class Hangman
      * @param letter which letter to look for
      * @return the placements of the letter, if not present then it will take off a life
      */
-    public int[] checkIfContainLetter(char letter)
+    public int[] checkIfContainLetter(String letter)
     {
-        int[] placements = {-1,-1,-1,-1};
 
-        for(int i=0; i < 4; i++)
+        letter = letter.replaceAll("\\s+","");
+        char[] letters = wordToGuess.toCharArray();
+
+        for(int i=0; i < placements.length; i++)
         {
-            if(wordToGuess.equals(letter))
+          if(letter.equalsIgnoreCase(String.valueOf(letters[i])))
+          {
+              placements[i] = 1;
+          }
+        }
+
+        for(int item : placements)
+        {
+            if(item != 0)
             {
-                placements[i] = 1;
+                return placements;
             }
         }
 
-        if(placements == new int[] {-1,-1,-1,-1})
-        {
-            lives--;
-        }
+        lives--;
 
         return placements;
     }
