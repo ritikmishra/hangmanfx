@@ -4,6 +4,7 @@
 
 .button {
     -fx-font-size: 16pt;
+    -fx-background-color: #FFF;
 }
 
 .label {
@@ -12,5 +13,5 @@
 }
 
 #pane {
-    -fx-background-color: black;
+    -fx-background-color: linear-gradient(from 0px 0px to 600px 400px, rgb(30,87,153) 0%,rgb(41,137,216) 50%,rgb(32,124,202) 51%,rgb(125,185,232) 100%);
 }
