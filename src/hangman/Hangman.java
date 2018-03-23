@@ -12,7 +12,7 @@ public class Hangman
         FileHandler fileHandler = new FileHandler("src/english.txt");
         Random r = new Random();
 
-        wordToGuess = fileHandler.getLine(r.nextInt(fileHandler.getEngFileSize()), fileHandler.getFileName());
+        wordToGuess = fileHandler.getLine(r.nextInt(fileHandler.getFileSize(fileHandler.getFileName())), fileHandler.getFileName());
     }
 
     /**

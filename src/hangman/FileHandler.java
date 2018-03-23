@@ -60,7 +60,7 @@ public class FileHandler
     }
 
     /**
-     * Read the whole fle
+     * Reads the whole fle
      */
     public String readWholeFile() throws IOException
     {
@@ -123,11 +123,30 @@ public class FileHandler
     }
 
     /**
-     * @return size of english file
+     * @return File size
      */
-    public int getEngFileSize()
+    public int getFileSize(String path)
     {
-        return 500;
+        file = new File(path);
+        int count = 0;
+        if(file.exists())
+        {
+            try
+            {
+                FileReader fileReader = new FileReader(file);
+                BufferedReader bufferedReader = new BufferedReader(fileReader);
+
+                while(bufferedReader.readLine() != null)
+                {
+                    count++;
+                }
+
+                fileReader.close();
+            }
+            catch(IOException e) {e.printStackTrace();}
+        }
+
+        return count;
     }
 
 }
