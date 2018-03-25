@@ -18,7 +18,7 @@ public class Main extends Application {
     private static final MoveTo ORIGIN = new MoveTo(startX, startY);
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("main.fxml"));
         primaryStage.setTitle("Hello World");
 
         Path gallows = new Path(ORIGIN, new LineTo(startX, startY+60));
