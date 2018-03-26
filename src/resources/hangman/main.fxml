@@ -5,7 +5,10 @@
 <?import javafx.scene.shape.Polyline?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hangman.MainController">
+<?import javafx.scene.control.Button?>
+<?import java.net.URL?>
+
+<AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hangman.MainController">
    <children>
       <Text fx:id="showName" layoutX="-86.0" layoutY="-81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="33.21875" x="100.0" y="100.0" />
       <Polyline fill="CHARTREUSE" strokeType="INSIDE">
@@ -20,5 +23,11 @@
           <Double fx:value="-40.0" />
         </points>
       </Polyline>
+
+       <Button fx:id="example" text="click" onAction="#click"/>
    </children>
+
+    <stylesheets>
+        <URL value="@Main.css" />
+    </stylesheets>
 </AnchorPane>
