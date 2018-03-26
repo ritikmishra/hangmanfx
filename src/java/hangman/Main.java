@@ -16,16 +16,34 @@ public class Main extends Application {
     private static final int startX = 25;
     private static final int startY = 25;
     private static final MoveTo ORIGIN = new MoveTo(startX, startY);
+
+    public static Stage window;
+
+    public static Scene startScene;
+    public static Scene mainScene;
+
+    public static String name;
+
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("main.fxml"));
-        primaryStage.setTitle("Hello World");
+        window = primaryStage;
 
-        Path gallows = new Path(ORIGIN, new LineTo(startX, startY+60));
+        primaryStage.setTitle("Hangman");
 
-        primaryStage.setScene(new Scene(root, 500, 375));
+        Parent mainRoot = FXMLLoader.load(getClass().getResource("main.fxml"));
+        Parent startRoot =  FXMLLoader.load(getClass().getResource("startingScreen.fxml"));
+
+        startScene = new Scene(startRoot);
+        mainScene = new Scene(mainRoot);
+
+        primaryStage.setScene(startScene);
         primaryStage.show();
+    }
 
+    public static void switchToMainScene(String username)
+    {
+        name = username;
+        window.setScene(mainScene);
     }
 
 

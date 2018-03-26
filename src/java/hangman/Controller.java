@@ -15,15 +15,15 @@ import java.util.ResourceBundle;
 public class Controller implements Initializable
 {
     @FXML
-    private TextField field;
+    private TextField inputName;
 
     @FXML
-    private Button button;
+    private Button submitName;
 
     @FXML
     private void continueAction(ActionEvent event)
     {
-        start();
+        switchToMain();
     }
 
     @FXML
@@ -31,27 +31,13 @@ public class Controller implements Initializable
     {
         if(event.getCode() == KeyCode.ENTER)
         {
-            start();
+            switchToMain();
         }
     }
 
-    private void start()
+    private void switchToMain()
     {
-        StartingScreen startingScreen = new StartingScreen();
-
-        new Hangman(field.getText());
-
-        try
-        {
-            startingScreen.runAnotherApp(Main.class);
-        }
-        catch(Exception e)
-        {
-            e.printStackTrace();
-        }
-
-        Stage stage = (Stage) button.getScene().getWindow();
-        stage.close();
+        Main.switchToMainScene(inputName.getText());
     }
 
     @Override
