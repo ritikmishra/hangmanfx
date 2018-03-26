@@ -1,4 +1,4 @@
-package hangman;
+package main.hangman;
 
 import java.util.Random;
 
@@ -80,5 +80,14 @@ public class Hangman
     public int getLives()
     {
         return lives;
+    }
+
+    /**
+     * Sets word to guess
+     * @param word word to set
+     */
+    public void setWordToGuess(String word)
+    {
+        this.wordToGuess = word;
     }
 }

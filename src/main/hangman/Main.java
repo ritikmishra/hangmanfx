@@ -1,15 +1,11 @@
-package hangman;
+package main.hangman;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.VBox;
-import javafx.scene.shape.LineTo;
 import javafx.scene.shape.MoveTo;
-import javafx.scene.shape.Path;
 import javafx.stage.Stage;
-
 
 public class Main extends Application {
 
@@ -30,8 +26,8 @@ public class Main extends Application {
 
         primaryStage.setTitle("Hangman");
 
-        Parent mainRoot = FXMLLoader.load(getClass().getResource("main.fxml"));
-        Parent startRoot =  FXMLLoader.load(getClass().getResource("startingScreen.fxml"));
+        Parent mainRoot = FXMLLoader.load(getClass().getResource("../../resources/hangman/main.fxml"));
+        Parent startRoot =  FXMLLoader.load(getClass().getResource("../../resources/hangman/startingScreen.fxml"));
 
         startScene = new Scene(startRoot);
         mainScene = new Scene(mainRoot);
@@ -42,15 +38,16 @@ public class Main extends Application {
 
     public static void switchToMainScene(String username)
     {
+        Hangman hangman = new Hangman();
         name = username;
+        hangman.setWordToGuess(name);
+        System.out.println(hangman.getWordToGuess());
         window.setScene(mainScene);
     }
 
 
     public static void main(String[] args)
     {
-        Hangman hangman = new Hangman();
-        System.out.println(hangman.getWordToGuess());
         launch(args);
     }
 }

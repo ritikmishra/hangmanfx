@@ -1,4 +1,4 @@
-package hangman;
+package main.hangman;
 
 import java.io.*;
 import java.nio.file.Files;
