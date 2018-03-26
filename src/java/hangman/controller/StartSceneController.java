@@ -16,20 +16,28 @@ import java.util.ResourceBundle;
 
 public class StartSceneController implements Initializable
 {
-
-
+    /**
+     * A textbox in which the user can input their name
+     */
     @FXML
     private TextField inputName;
 
-    @FXML
-    private Button submitName;
 
+    /**
+     * When the continue button is clicked, continue on to the main scene where the user can play hangman
+     * @param event
+     */
     @FXML
     private void continueAction(ActionEvent event)
     {
         switchToMain();
     }
 
+
+    /**
+     * When the user hits enter, continue on to the main scene where the user can play hangman
+     * @param event
+     */
     @FXML
     private void hitStartEnter(KeyEvent event)
     {

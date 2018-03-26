@@ -4,15 +4,25 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
+/**
+ * A class to ease the handling of files
+ */
 public class FileHandler
 {
+    /**
+     * The path to the file
+     */
     private final String fileName;
+
+    /**
+     * The {@link File} object representing the file
+     */
     private File file;
 
     public FileHandler(String fileName) {this.fileName = fileName;}
 
     /**
-     * Makes new file with certain path
+     * Make new file at certain path
      *
      * @param path path of file
      */
@@ -38,12 +48,12 @@ public class FileHandler
     }
 
     /**
-     * Reads the whole file of the file located in path
+     * Read the whole file of the file at the specified path
      *
      * @param path path of which file wanted to be read
-     * @return The contents of the file in a very large string
+     * @return The contents of the file (in a very large string)
      */
-    public String readWholeFile(String path) throws IOException
+    private String readWholeFile(String path) throws IOException
     {
         FileReader fileReader = new FileReader(path);
         BufferedReader bufferedReader = new BufferedReader(fileReader);
@@ -60,7 +70,9 @@ public class FileHandler
     }
 
     /**
-     * Reads the whole fle
+     * Reads the whole file
+     *
+     * @return A string containing the contents of the file
      */
     public String readWholeFile() throws IOException
     {
@@ -68,17 +80,16 @@ public class FileHandler
     }
 
     /**
-     * Gets line of file
+     * Gets a line of file
      *
-     * @param line line of file in which it will return
-     * @param path path of file wanted
+     * @param line the line number of the line to be returned
      * @return String of the line specified
      */
-    public String getLine(int line, String path)
+    public String getLine(int line)
     {
         try
         {
-            return Files.readAllLines(Paths.get(path)).get(line);
+            return Files.readAllLines(Paths.get(fileName)).get(line);
         }
         catch(IOException e)
         {
@@ -91,28 +102,17 @@ public class FileHandler
     /**
      * Writes to file
      *
-     * @param path   path of file is wanted to be written to
      * @param object object that is been written to the file
      * @param append Whether or not to append to the file
      */
-    public void writeToFile(String path, Object object, boolean append) throws IOException
+    public void writeToFile(Object object, boolean append) throws IOException
     {
-        FileWriter write = new FileWriter(path, append);
+        FileWriter write = new FileWriter(fileName, append);
         write.write(object.toString());
         write.flush();
         write.close();
     }
 
-    /**
-     * Writes to the file
-     * @param object The thing to write
-     * @param append Whether or not to append to the file
-     * @throws IOException
-     */
-    public void writeToFile(Object object, boolean append) throws IOException
-    {
-        writeToFile(fileName, object, append);
-    }
 
     /**
      * @return fileName
@@ -123,9 +123,9 @@ public class FileHandler
     }
 
     /**
-     * @return File size
+     * @return Number of lines in the file
      */
-    public int getFileSize(String path)
+    public int getNumLines(String path)
     {
         file = new File(path);
         int count = 0;

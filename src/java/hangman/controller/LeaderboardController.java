@@ -1,9 +1,11 @@
 package hangman.controller;
 
-import hangman.util.Leaderboard;
 import hangman.Main;
+import hangman.util.LeaderboardEntry;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.HPos;
+import javafx.geometry.VPos;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.text.Text;
@@ -12,6 +14,11 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
+/**
+ * Controls the leaderboard scene
+ *
+ * When initialized, goes through each leaderboard entry and adds them to the grid pane, ensuring that they are centered
+ */
 public class LeaderboardController implements Initializable
 {
     @FXML
@@ -20,30 +27,38 @@ public class LeaderboardController implements Initializable
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
-        List<Leaderboard.LeaderboardEntry> leaderboardEntries = Main.leaderboard.getLeaderboard();
+        // Get all the entries of the leaderboard
+        List<LeaderboardEntry> leaderboardEntries = Main.leaderboard.getLeaderboard();
 
-        Text[] names = new Text[leaderboardEntries.size()];
-        Text[] scores = new Text[leaderboardEntries.size()];
-        Text[] dates = new Text[leaderboardEntries.size()];
-
+        // For each leaderboard entry
         for(int i = 0; i < leaderboardEntries.size(); i++)
         {
-            Leaderboard.LeaderboardEntry entry = leaderboardEntries.get(i);
+            LeaderboardEntry entry = leaderboardEntries.get(i);
 
-            names[i] = new Text(entry.getName());
-            scores[i] = new Text(String.valueOf(entry.getScore()));
-            dates[i] = new Text(entry.getTimestamp().toString());
+            // Make 3 new text elements for the name, score, and date attached to the entry
+            Text name = new Text(entry.getName());
+            Text score = new Text(String.valueOf(entry.getScore()));
+            Text date = new Text(entry.getTimestamp().toString());
 
-            pane.addRow(i + 1, names[i], scores[i], dates[i]);
+            // Add them to the grid pane
+            pane.addRow(i + 1, name, score, date);
 
+            // Center them
+            GridPane.setHalignment(name, HPos.CENTER);
+            GridPane.setValignment(name, VPos.CENTER);
+
+            GridPane.setHalignment(score, HPos.CENTER);
+            GridPane.setValignment(score, VPos.CENTER);
+
+            GridPane.setHalignment(date, HPos.CENTER);
+            GridPane.setValignment(date, VPos.CENTER);
+
+            // Make sure that the height of the row is consistent
             RowConstraints rowConstraint = new RowConstraints();
             rowConstraint.setPrefHeight(30);
             rowConstraint.setMinHeight(10);
 
             pane.getRowConstraints().add(rowConstraint);
         }
-
-        System.out.println("initialized leaderboard");
-
     }
 }

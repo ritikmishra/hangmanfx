@@ -2,6 +2,9 @@ package hangman.util;
 
 import java.util.Random;
 
+/**
+ * A class to manage guessing letters, counting lives, and calculating score
+ */
 public class Hangman
 {
     private final int startingLives = 6;
@@ -10,23 +13,29 @@ public class Hangman
     public boolean[] placements;
     private String name;
 
-    Hangman(){
-        newWord();
+    /**
+     * Create a new hangman object without a username
+     */
+    private Hangman(){
+        generateNewWord();
     }
 
+    /**
+     * Create a new hangman object with a username
+     * @param name The username
+     */
     public Hangman(String name)
     {
         this();
         this.name = name;
-        System.out.println(this.name);
     }
 
 
     /**
-     * This helps return if the user has enter a right key and if they do it will tell us the place in which it is located
+     * Check if the user has guessed a letter correctly
      *
-     * @param guessedLetter which letter to look for
-     * @return the placements of the letter, if not present then it will take off a life
+     * @param guessedLetter which letter the user has guessed
+     * @return If the user has guessed correctly
      */
     public boolean checkIfContainLetter(String guessedLetter)
     {
@@ -51,12 +60,15 @@ public class Hangman
     }
 
 
-    public void newWord()
+    /**
+     * Generate a new word and assign it to {@link Hangman#wordToGuess}
+     */
+    private void generateNewWord()
     {
         FileHandler fileHandler = new FileHandler("src/english.txt");
         Random r = new Random();
 
-        wordToGuess = fileHandler.getLine(r.nextInt(fileHandler.getFileSize(fileHandler.getFileName())), fileHandler.getFileName());
+        wordToGuess = fileHandler.getLine(r.nextInt(fileHandler.getNumLines(fileHandler.getFileName())));
         placements = new boolean[wordToGuess.length()];
     }
 
@@ -69,18 +81,29 @@ public class Hangman
     }
 
     /**
-     * @return lives
+     * @return lives left
      */
     public int getLives()
     {
         return lives;
     }
 
+    /**
+     * Subtract 1 from the number of lives left
+     *
+     */
     public void takeLife()
     {
         lives--;
     }
 
+    /**
+     * Get a string which is safe to display to the user, because it is "unsafe" to show the user the entire word
+     *
+     * For example, if the user guessed the letters "e" and "t", and the word to guess is "rate" this will return
+     * "_ _ t e"
+     * @return A string that is safe to show to the user
+     */
     public String getUserDisplay()
     {
         StringBuilder result = new StringBuilder();
@@ -102,6 +125,10 @@ public class Hangman
 
     }
 
+    /**
+     * Calculate score based on length of the word and number of incorrect guesses
+     * @return The score
+     */
     public double getScore()
     {
         int incorrectGuesses = startingLives - lives;
