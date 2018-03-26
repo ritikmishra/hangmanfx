@@ -106,7 +106,8 @@ public class MainController implements Initializable
     @FXML
     private void updateLives(MouseEvent event)
     {
-        userGuesses.setText(Main.hangman.getUserDisplay());
+        updateText();
+
         updateLives(Main.hangman.getLives());
         Main.hangman.takeLife();
 
@@ -158,6 +159,7 @@ public class MainController implements Initializable
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
+//        updateText();
         // Ensure {@link Main} can access the text object
         kShowName = showName;
 
@@ -169,6 +171,11 @@ public class MainController implements Initializable
         {
             bodyPart.setVisible(false);
         }
+    }
+
+    private void updateText()
+    {
+        userGuesses.setText(Main.hangman.getUserDisplay());
     }
 
     /**
