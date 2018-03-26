@@ -1,12 +1,11 @@
 package hangman;
 
-import javafx.scene.text.Text;
-
 import java.util.Random;
 
 public class Hangman
 {
-    private int lives = 6;
+    private final int startingLives = 6;
+    private int lives = startingLives;
     private String wordToGuess;
     public boolean[] placements;
     private String name;
@@ -15,19 +14,13 @@ public class Hangman
         newWord();
     }
 
-    Hangman(String name)
+    public Hangman(String name)
     {
         this();
         this.name = name;
         System.out.println(this.name);
     }
 
-    Hangman(boolean newWord)
-    {
-        this();
-
-        System.out.println(wordToGuess);
-    }
 
     /**
      * This helps return if the user has enter a right key and if they do it will tell us the place in which it is located
@@ -35,7 +28,7 @@ public class Hangman
      * @param guessedLetter which letter to look for
      * @return the placements of the letter, if not present then it will take off a life
      */
-    public boolean[] checkIfContainLetter(String guessedLetter)
+    public boolean checkIfContainLetter(String guessedLetter)
     {
 
         guessedLetter = guessedLetter.trim();
@@ -48,21 +41,15 @@ public class Hangman
             if(guessedLetter.equalsIgnoreCase(ithLetter))
             {
                 placements[i] = true;
-            }
-        }
-
-        for(boolean correctlyGuessed : placements)
-        {
-            if(correctlyGuessed)
-            {
-                return placements;
+                return true;
             }
         }
 
         takeLife();
 
-        return placements;
+        return false;
     }
+
 
     public void newWord()
     {
@@ -113,5 +100,18 @@ public class Hangman
         }
         return result.toString();
 
+    }
+
+    public double getScore()
+    {
+        int incorrectGuesses = startingLives - lives;
+
+        int correctGuesses = 0;
+        for(boolean correctlyGuessed : placements)
+        {
+            if(correctlyGuessed) correctGuesses++;
+        }
+
+        return (correctGuesses - incorrectGuesses) / (double) wordToGuess.length();
     }
 }

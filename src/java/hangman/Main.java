@@ -30,8 +30,11 @@ public class Main extends Application implements Initializable{
 
     public static Scene startScene;
     public static Scene mainScene;
+    public static Scene leaderboardScene;
 
     public static String name;
+    public static Leaderboard leaderboard = new Leaderboard();
+
 
     public static String getName()
     {
@@ -46,9 +49,11 @@ public class Main extends Application implements Initializable{
 
         Parent mainRoot = FXMLLoader.load(getClass().getResource("main.fxml"));
         Parent startRoot =  FXMLLoader.load(getClass().getResource("startingScreen.fxml"));
+        Parent leaderboardRoot = FXMLLoader.load(getClass().getResource("showLeaderboard.fxml"));
 
         startScene = new Scene(startRoot);
         mainScene = new Scene(mainRoot);
+        leaderboardScene = new Scene(leaderboardRoot);
 
         primaryStage.setScene(startScene);
         primaryStage.show();
@@ -64,11 +69,22 @@ public class Main extends Application implements Initializable{
         window.setScene(mainScene);
     }
 
+    public static void switchToLeaderboardScene()
+    {
+        leaderboard.addEntry(name, hangman.getScore());
+        window.setScene(leaderboardScene);
+    }
+
 
     public static void main(String[] args)
     {
-
         launch(args);
+    }
+
+    @Override
+    public void stop() throws Exception
+    {
+        leaderboard.updateFile();
     }
 
     @Override
