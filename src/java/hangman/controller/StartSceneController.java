@@ -1,5 +1,6 @@
-package hangman;
+package hangman.controller;
 
+import hangman.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;

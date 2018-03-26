@@ -1,6 +1,6 @@
 package hangman.test;
 
-import hangman.Hangman;
+import hangman.util.Hangman;
 
 import java.util.Scanner;
 

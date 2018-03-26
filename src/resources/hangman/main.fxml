@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#updateLives" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hangman.MainController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#updateLives" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hangman.controller.MainController">
    <children>
       <Text fx:id="showName" layoutX="-86.0" layoutY="-81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="33.21875" x="100.0" y="100.0" />
       <Path fx:id="gallows" fill="#1f93ff00" layoutX="14.0" layoutY="155.0" scaleX="3.0" scaleY="3.0" scaleZ="2.0" stroke="BLACK" strokeType="INSIDE">

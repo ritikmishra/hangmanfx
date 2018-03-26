@@ -1,5 +1,6 @@
-package hangman;
+package hangman.controller;
 
+import hangman.Main;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -79,8 +80,6 @@ public class MainController implements Initializable
         {
             bodyPart.setVisible(false);
         }
-
-//        userGuesses.setText(Main.hangman.getUserDisplay());
     }
 
     @FXML

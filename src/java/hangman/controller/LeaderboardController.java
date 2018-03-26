@@ -1,5 +1,7 @@
-package hangman;
+package hangman.controller;
 
+import hangman.util.Leaderboard;
+import hangman.Main;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.GridPane;

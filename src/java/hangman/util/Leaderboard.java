@@ -1,4 +1,4 @@
-package hangman;
+package hangman.util;
 
 import java.io.IOException;
 import java.util.ArrayList;
