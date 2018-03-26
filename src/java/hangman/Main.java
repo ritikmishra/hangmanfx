@@ -4,10 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.VBox;
-import javafx.scene.shape.LineTo;
 import javafx.scene.shape.MoveTo;
-import javafx.scene.shape.Path;
 import javafx.stage.Stage;
 
 
@@ -23,6 +20,11 @@ public class Main extends Application {
     public static Scene mainScene;
 
     public static String name;
+
+    public static String getName()
+    {
+        return name;
+    }
 
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -42,15 +44,18 @@ public class Main extends Application {
 
     public static void switchToMainScene(String username)
     {
+        Hangman hangman = new Hangman(username);
+        System.out.println(hangman.getWordToGuess());
+
         name = username;
+        MainController.kShowName.setText(name);
         window.setScene(mainScene);
     }
 
 
     public static void main(String[] args)
     {
-        Hangman hangman = new Hangman();
-        System.out.println(hangman.getWordToGuess());
+
         launch(args);
     }
 }
