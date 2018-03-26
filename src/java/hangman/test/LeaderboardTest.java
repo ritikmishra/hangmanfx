@@ -1,6 +1,9 @@
-package main.hangman.test;
+package hangman.test;
 
-import main.hangman.Leaderboard;
+import hangman.FileHandler;
+import hangman.Leaderboard;
+
+import java.io.IOException;
 
 public class LeaderboardTest
 {
