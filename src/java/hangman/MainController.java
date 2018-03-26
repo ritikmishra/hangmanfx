@@ -53,8 +53,12 @@ public class MainController implements Initializable
     {
         userGuesses.setText(Main.hangman.getUserDisplay());
         updateLives(Main.hangman.getLives());
-
         Main.hangman.takeLife();
+
+        if(Main.hangman.getLives() == 0)
+        {
+            continueToEndScene.setVisible(true);
+        }
     }
 
     private void updateLives(int lives)
