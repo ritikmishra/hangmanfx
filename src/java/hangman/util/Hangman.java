@@ -1,5 +1,8 @@
 package hangman.util;
 
+import com.sun.corba.se.impl.protocol.MinimalServantCacheLocalCRDImpl;
+
+import java.time.chrono.MinguoChronology;
 import java.util.Random;
 
 /**
@@ -8,9 +11,13 @@ import java.util.Random;
 public class Hangman
 {
     private final int startingLives = 6;
+    private final int MIN_LENGTH = 4;
+    private final int MAX_LENGTH = 10;
     private int lives = startingLives;
     private String wordToGuess;
-    public boolean[] placements;
+
+    private boolean[] placements;
+
     private String name;
 
     /**
@@ -69,7 +76,24 @@ public class Hangman
         Random r = new Random();
 
         wordToGuess = fileHandler.getLine(r.nextInt(fileHandler.getNumLines(fileHandler.getFileName())));
+
+        // Ensure that the word is within length bounds
+        if(wordToGuess.length() < MIN_LENGTH || wordToGuess.length() > MAX_LENGTH)
+        {
+            generateNewWord();
+            return;
+        }
+        // Ensure the word only has letters
+        for(char letter : wordToGuess.toCharArray())
+        {
+            if(!Character.isLetter(letter))
+            {
+                generateNewWord();
+                return;
+            }
+        }
         placements = new boolean[wordToGuess.length()];
+        System.out.println(wordToGuess);
     }
 
     /**
