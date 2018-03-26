@@ -1,18 +1,28 @@
 package hangman;
 
 import javafx.application.Application;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.shape.MoveTo;
+
+import javafx.scene.text.Text;
+
 import javafx.stage.Stage;
 
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class Main extends Application {
+
+public class Main extends Application implements Initializable{
 
     private static final int startX = 25;
     private static final int startY = 25;
     private static final MoveTo ORIGIN = new MoveTo(startX, startY);
+    private static final int WIDTH = 500;
+    private static final int HEIGHT = 375;
 
     public static Stage window;
 
@@ -57,5 +67,11 @@ public class Main extends Application {
     {
 
         launch(args);
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources)
+    {
+
     }
 }
