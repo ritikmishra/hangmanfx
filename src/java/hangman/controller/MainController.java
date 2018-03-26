@@ -1,6 +1,7 @@
 package hangman.controller;
 
 import hangman.Main;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -11,6 +12,8 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 import javafx.scene.text.Text;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 /**
@@ -18,6 +21,10 @@ import java.util.ResourceBundle;
  */
 public class MainController implements Initializable
 {
+    /**
+     * Makes a map that gets to see if a button can be clicked again
+     */
+    private Map<Button, Boolean> canClickButton = new HashMap<>();
 
     /**
      * Displays the username in the corner
@@ -117,6 +124,35 @@ public class MainController implements Initializable
     {
         System.out.println("lives = [" + lives + "]");
         body[body.length - lives].setVisible(true);
+    }
+
+    /**
+     * Action listener for the buttons
+     */
+    @FXML
+    private void click(ActionEvent event)
+    {
+        for(Button button : canClickButton.keySet())
+        {
+            if(event.getSource() == button)
+            {
+                clickedButton(button);
+            }
+        }
+    }
+
+    /**
+     * Checks if it can be clicked
+     *  Changes the background and doesn't let it be clicked again once clicked
+     * @param button which button is being changed
+     */
+    private void clickedButton(Button button)
+    {
+        if(canClickButton.get(button))
+        {
+            button.getStyleClass().add("clicked");
+            canClickButton.replace(button, false);
+        }
     }
 
     @Override
