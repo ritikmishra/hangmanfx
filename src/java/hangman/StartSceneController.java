@@ -7,13 +7,16 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class Controller implements Initializable
+public class StartSceneController implements Initializable
 {
+
+
     @FXML
     private TextField inputName;
 
