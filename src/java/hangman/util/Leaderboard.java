@@ -1,8 +1,7 @@
-package hangman;
+package hangman.util;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class Leaderboard
@@ -22,54 +21,7 @@ public class Leaderboard
     private List<LeaderboardEntry> leaderboard;
 
 
-    /**
-     * A bean for the info that goes with an entry in the leaderboard: Name, score, and timestamp
-     */
-    public static class LeaderboardEntry
-    {
-        private final String name;
-        private final double score;
-
-
-        private final Date timestamp;
-
-        public LeaderboardEntry(String name, double score)
-        {
-            this.name = name;
-            this.score = score;
-            this.timestamp = new Date();
-        }
-
-        public LeaderboardEntry(String entry)
-        {
-            String[] data = entry.split(", ");
-            name = data[0];
-            score = Double.valueOf(data[1]);
-            timestamp = new Date(data[2]);
-        }
-
-        public double getScore()
-        {
-            return score;
-        }
-
-        public Date getTimestamp()
-        {
-            return timestamp;
-        }
-
-        public String getName()
-        {
-            return name;
-        }
-
-        public String toCSV()
-        {
-            return name + ", " + score + ", " + timestamp.toString();
-        }
-    }
-
-    Leaderboard()
+    public Leaderboard()
     {
         leaderboard = readFile();
     }
