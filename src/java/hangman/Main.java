@@ -24,6 +24,8 @@ public class Main extends Application implements Initializable{
     private static final int WIDTH = 500;
     private static final int HEIGHT = 375;
 
+    public static Hangman hangman;
+
     public static Stage window;
 
     public static Scene startScene;
@@ -54,7 +56,7 @@ public class Main extends Application implements Initializable{
 
     public static void switchToMainScene(String username)
     {
-        Hangman hangman = new Hangman(username);
+        hangman = new Hangman(username);
         System.out.println(hangman.getWordToGuess());
 
         name = username;

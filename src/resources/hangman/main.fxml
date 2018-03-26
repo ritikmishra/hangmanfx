@@ -7,9 +7,10 @@
 <?import javafx.scene.shape.Path?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.shape.VLineTo?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hangman.MainController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#updateLives" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hangman.MainController">
    <children>
       <Text fx:id="showName" layoutX="-86.0" layoutY="-81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="33.21875" x="100.0" y="100.0" />
       <Path fx:id="gallows" fill="#1f93ff00" layoutX="14.0" layoutY="155.0" scaleX="3.0" scaleY="3.0" scaleZ="2.0" stroke="BLACK" strokeType="INSIDE">
@@ -27,5 +28,10 @@
       <Rectangle fx:id="armLeft" arcHeight="5.0" arcWidth="5.0" fill="#ff5c1e29" height="12.0" layoutX="107.0" layoutY="137.0" rotate="-88.2" stroke="BLACK" strokeType="INSIDE" width="50.0" />
       <Rectangle fx:id="legLeft" arcHeight="5.0" arcWidth="5.0" fill="#ff5c1e29" height="12.0" layoutX="120.0" layoutY="205.0" rotate="-78.7" stroke="BLACK" strokeType="INSIDE" width="45.0" />
        <Rectangle fx:id="legRight" arcHeight="5.0" arcWidth="5.0" fill="#ff5c1e29" height="12.0" layoutX="160.0" layoutY="205.0" rotate="78.7" stroke="BLACK" strokeType="INSIDE" width="45.0" />
+      <Text fx:id="userGuesses" layoutX="275.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" text="_ _ _ _ _ _ _ _ _ _">
+         <font>
+            <Font size="45.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>

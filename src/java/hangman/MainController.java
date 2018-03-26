@@ -3,6 +3,7 @@ package hangman;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Path;
 import javafx.scene.shape.Rectangle;
@@ -38,17 +39,26 @@ public class MainController implements Initializable
     @FXML
     public Rectangle legRight;
 
+    @FXML
+    public Text userGuesses;
 
-    public Shape[] body = new Shape[] {head, torso, armLeft, armRight, legLeft, legRight};
+    public Shape[] body;
 
     public static Text kShowName;
 
-
-
-
-    public void updateLives(int lives)
+    @FXML
+    private void updateLives(MouseEvent event)
     {
-        body[body.length - lives + 1].setVisible(true);
+        userGuesses.setText(Main.hangman.getUserDisplay());
+        updateLives(Main.hangman.getLives());
+
+        Main.hangman.takeLife();
+    }
+
+    private void updateLives(int lives)
+    {
+        System.out.println("lives = [" + lives + "]");
+        body[body.length - lives].setVisible(true);
     }
 
     @Override
@@ -56,13 +66,14 @@ public class MainController implements Initializable
     {
         kShowName = showName;
 
-        head.setVisible(false);
-        armLeft.setVisible(false);
-        armRight.setVisible(false);
-        torso.setVisible(false);
-        legLeft.setVisible(false);
-        legRight.setVisible(false);
-
         body = new Shape[] {head, torso, armLeft, armRight, legLeft, legRight};
+
+        for(Shape bodyPart : body)
+        {
+            bodyPart.setVisible(false);
+        }
+
+        userGuesses.setText(Main.hangman.getUserDisplay());
     }
+
 }
