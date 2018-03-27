@@ -7,10 +7,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Ellipse;
-import javafx.scene.shape.Path;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 import javafx.scene.text.Text;
+
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
@@ -25,6 +25,11 @@ public class MainController implements Initializable
      * Makes a map that gets to see if a button can be clicked again
      */
     private Map<Button, Boolean> canClickButton = new HashMap<>();
+
+    /**
+     * Makes it easier to return letter of the button clicked
+     */
+    private Map<Button, Character> buttonLetter = new HashMap<>();
 
     /**
      * Displays the username in the corner
@@ -88,8 +93,165 @@ public class MainController implements Initializable
     public Button continueToEndScene;
 
     /**
+     * Button "A"
+     */
+    @FXML
+    public Button A;
+
+    /**
+     * Button "B"
+     */
+    @FXML
+    public Button B;
+
+    /**
+     * Button "C"
+     */
+    @FXML
+    public Button C;
+
+    /**
+     * Button "D"
+     */
+    @FXML
+    public Button D;
+
+    /**
+     * Button "E"
+     */
+    @FXML
+    public Button E;
+
+    /**
+     * Button "F"
+     */
+    @FXML
+    public Button F;
+
+    /**
+     * Button "G"
+     */
+    @FXML
+    public Button G;
+
+    /**
+     * Button "H"
+     */
+    @FXML
+    public Button H;
+
+    /**
+     * Button "I"
+     */
+    @FXML
+    public Button I;
+
+    /**
+     * Button "J"
+     */
+    @FXML
+    public Button J;
+
+    /**
+     * Button "K"
+     */
+    @FXML
+    public Button K;
+
+    /**
+     * Button "L"
+     */
+    @FXML
+    public Button L;
+
+    /**
+     * Button "M"
+     */
+    @FXML
+    public Button M;
+
+    /**
+     * Button "N"
+     */
+    @FXML
+    public Button N;
+
+    /**
+     * Button "O"
+     */
+    @FXML
+    public Button O;
+
+    /**
+     * Button "P"
+     */
+    @FXML
+    public Button P;
+
+    /**
+     * Button "Q"
+     */
+    @FXML
+    public Button Q;
+
+    /**
+     * Button "R"
+     */
+    @FXML
+    public Button R;
+
+    /**
+     * Button "S"
+     */
+    @FXML
+    public Button S;
+
+    /**
+     * Button "T"
+     */
+    @FXML
+    public Button T;
+
+    /**
+     * Button "U"
+     */
+    @FXML
+    public Button U;
+
+    /**
+     * Button "V"
+     */
+    @FXML
+    public Button V;
+
+    /**
+     * Button "W"
+     */
+    @FXML
+    public Button W;
+
+    /**
+     * Button "X"
+     */
+    @FXML
+    public Button X;
+
+
+    /**
+     * Button "Y"
+     */
+    @FXML
+    public Button Y;
+
+    /**
+     * Button "Z"
+     */
+    @FXML
+    public Button Z;
+
+    /**
      * The array of shapes making up the body
-     *
+     * <p>
      * Now that they are in an array, we can easily show body parts based on the number of incorrect guesses
      */
     private Shape[] body;
@@ -101,7 +263,8 @@ public class MainController implements Initializable
 
     /**
      * When the user clicks on a button to guess the letter, update the amount of lives they have
-     * @param event
+     *
+     * @param event Mouse listener
      */
     @FXML
     private void updateLives(MouseEvent event)
@@ -119,7 +282,8 @@ public class MainController implements Initializable
 
     /**
      * Given a certain amount of lives left, show a body part
-     * @param lives
+     *
+     * @param lives Amount of lives
      */
     private void updateLives(int lives)
     {
@@ -144,7 +308,8 @@ public class MainController implements Initializable
 
     /**
      * Checks if it can be clicked
-     *  Changes the background and doesn't let it be clicked again once clicked
+     * Changes the background and doesn't let it be clicked again once clicked
+     *
      * @param button which button is being changed
      */
     private void clickedButton(Button button)
@@ -153,6 +318,7 @@ public class MainController implements Initializable
         {
             button.getStyleClass().add("clicked");
             canClickButton.replace(button, false);
+            System.out.println(buttonLetter.get(button));
         }
     }
 
@@ -164,7 +330,61 @@ public class MainController implements Initializable
         kShowName = showName;
 
         // Build the body
-        body = new Shape[] {head, torso, armLeft, armRight, legLeft, legRight};
+        body = new Shape[] { head, torso, armLeft, armRight, legLeft, legRight };
+
+        canClickButton.put(A, true);
+        buttonLetter.put(A, 'A');
+        canClickButton.put(B, true);
+        buttonLetter.put(B, 'B');
+        canClickButton.put(C, true);
+        buttonLetter.put(C, 'C');
+        canClickButton.put(D, true);
+        buttonLetter.put(D, 'D');
+        canClickButton.put(E, true);
+        buttonLetter.put(E, 'E');
+        canClickButton.put(F, true);
+        buttonLetter.put(F, 'F');
+        canClickButton.put(G, true);
+        buttonLetter.put(G, 'G');
+        canClickButton.put(H, true);
+        buttonLetter.put(H, 'H');
+        canClickButton.put(I, true);
+        buttonLetter.put(I, 'I');
+        canClickButton.put(J, true);
+        buttonLetter.put(J, 'J');
+        canClickButton.put(K, true);
+        buttonLetter.put(K, 'K');
+        canClickButton.put(L, true);
+        buttonLetter.put(L, 'L');
+        canClickButton.put(M, true);
+        buttonLetter.put(M, 'M');
+        canClickButton.put(N, true);
+        buttonLetter.put(N, 'N');
+        canClickButton.put(O, true);
+        buttonLetter.put(O, 'O');
+        canClickButton.put(P, true);
+        buttonLetter.put(P, 'P');
+        canClickButton.put(Q, true);
+        buttonLetter.put(Q, 'Q');
+        canClickButton.put(R, true);
+        buttonLetter.put(R, 'R');
+        canClickButton.put(S, true);
+        buttonLetter.put(S, 'S');
+        canClickButton.put(T, true);
+        buttonLetter.put(T, 'T');
+        canClickButton.put(U, true);
+        buttonLetter.put(U, 'U');
+        canClickButton.put(V, true);
+        buttonLetter.put(V, 'V');
+        canClickButton.put(W, true);
+        buttonLetter.put(W, 'W');
+        canClickButton.put(X, true);
+        buttonLetter.put(X, 'X');
+        canClickButton.put(Y, true);
+        buttonLetter.put(Y, 'Y');
+        canClickButton.put(Z, true);
+        buttonLetter.put(Z, 'Z');
+
 
         // hide the body
         for(Shape bodyPart : body)
@@ -180,7 +400,8 @@ public class MainController implements Initializable
 
     /**
      * When {@link MainController#continueToEndScene} is clicked, continue to the leaderboard scene
-     * @param mouseEvent
+     *
+     * @param mouseEvent mouse listener
      */
     @FXML
     private void continueToLeaderboard(MouseEvent mouseEvent)
