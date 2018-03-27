@@ -16,8 +16,8 @@ public class LeaderboardTest
         System.out.println("leaderboard.toCSV() = " + leaderboard.toCSV());
 
         // Add some entries
-        leaderboard.addEntry("Miguel", 10);
-        leaderboard.addEntry("Ritik", 18);
+        leaderboard.addEntry("Miguel", 10, "bob");
+        leaderboard.addEntry("Ritik", 18, "kitty");
 
         // Write the file
         leaderboard.updateFile();
