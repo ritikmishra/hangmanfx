@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Ellipse?>
@@ -11,15 +12,11 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<?import javafx.scene.control.Button?>
-<?import java.net.URL?>
-
-<?import javafx.scene.shape.Polyline?>
-<?import java.lang.Double?>
-<AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hangman.controller.MainController">
+<AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#updateLives" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hangman.controller.MainController">
    <children>
-      <Text fx:id="showName" layoutX="-86.0" layoutY="-81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="33.21875" x="100.0" y="100.0" />
-      <Path fx:id="gallows" fill="#1f93ff00" layoutX="14.0" layoutY="155.0" scaleX="3.0" scaleY="3.0" scaleZ="2.0" stroke="BLACK" strokeType="INSIDE">
+      <Text fx:id="showName" layoutX="-86.0" layoutY="-81.0" stroke="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="33.21875" x="100.0" y="100.0" />
+
+       <Path fx:id="gallows" fill="#1f93ff00" layoutX="14.0" layoutY="155.0" scaleX="3.0" scaleY="3.0" scaleZ="2.0" stroke="WHITE" strokeType="INSIDE">
           <elements>
               <MoveTo x="100.0" />
             <VLineTo y="-10.0" />
@@ -28,32 +25,22 @@
             <HLineTo x="100.0" />
           </elements>
       </Path>
-      <Ellipse fx:id="head" fill="#ff5c1e29" layoutX="164.0" layoutY="92.0" radiusX="25.0" radiusY="25.0" stroke="BLACK" strokeType="INSIDE" />
-      <Rectangle fx:id="torso" arcHeight="5.0" arcWidth="5.0" fill="#ff5a1f29" height="73.0" layoutX="139.0" layoutY="117.0" stroke="BLACK" strokeType="INSIDE" width="50.0" />
-      <Rectangle fx:id="armRight" arcHeight="5.0" arcWidth="5.0" fill="#ff5c1e29" height="12.0" layoutX="177.0" layoutY="137.0" rotate="72.9" stroke="BLACK" strokeType="INSIDE" width="50.0" />
-      <Rectangle fx:id="armLeft" arcHeight="5.0" arcWidth="5.0" fill="#ff5c1e29" height="12.0" layoutX="107.0" layoutY="137.0" rotate="-88.2" stroke="BLACK" strokeType="INSIDE" width="50.0" />
-      <Rectangle fx:id="legLeft" arcHeight="5.0" arcWidth="5.0" fill="#ff5c1e29" height="12.0" layoutX="120.0" layoutY="205.0" rotate="-78.7" stroke="BLACK" strokeType="INSIDE" width="45.0" />
-       <Rectangle fx:id="legRight" arcHeight="5.0" arcWidth="5.0" fill="#ff5c1e29" height="12.0" layoutX="160.0" layoutY="205.0" rotate="78.7" stroke="BLACK" strokeType="INSIDE" width="45.0" />
-      <Text fx:id="userGuesses" layoutX="275.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" text="_ _ _ _ _ _ _ _ _ _">
+
+      <Ellipse fx:id="head" fill="#ffe5db" layoutX="164.0" layoutY="92.0" radiusX="25.0" radiusY="25.0" stroke="TRANSPARENT" strokeType="INSIDE" />
+      <Rectangle fx:id="torso" arcHeight="5.0" arcWidth="5.0" fill="#ffe5db" height="73.0" layoutX="139.0" layoutY="117.0" stroke="TRANSPARENT" strokeType="INSIDE" width="50.0" />
+      <Rectangle fx:id="armRight" arcHeight="5.0" arcWidth="5.0" fill="#ffe5db" height="12.0" layoutX="177.0" layoutY="137.0" rotate="72.9" stroke="TRANSPARENT" strokeType="INSIDE" width="50.0" />
+      <Rectangle fx:id="armLeft" arcHeight="5.0" arcWidth="5.0" fill="#ffe5db" height="12.0" layoutX="107.0" layoutY="137.0" rotate="-88.2" stroke="TRANSPARENT" strokeType="INSIDE" width="50.0" />
+      <Rectangle fx:id="legLeft" arcHeight="5.0" arcWidth="5.0" fill="#ffe5db" height="12.0" layoutX="120.0" layoutY="205.0" rotate="-78.7" stroke="TRANSPARENT" strokeType="INSIDE" width="45.0" />
+       <Rectangle fx:id="legRight" arcHeight="5.0" arcWidth="5.0" fill="#ffe5db" height="12.0" layoutX="160.0" layoutY="205.0" rotate="78.7" stroke="TRANSPARENT" strokeType="INSIDE" width="45.0" />
+
+      <Text fx:id="userGuesses" layoutX="275.0" layoutY="91.0" strokeType="OUTSIDE" stroke="WHITE" strokeWidth="0.0" text="_ _ _ _ _ _ _ _ _ _">
          <font>
             <Font size="45.0" />
          </font>
       </Text>
-      <Button mnemonicParsing="false" text="Continue" layoutX="50" layoutY="110" visible="false" fx:id="continueToEndScene" onMouseClicked="#continueToLeaderboard"/>
-      <Polyline fill="CHARTREUSE" strokeType="INSIDE">
-        <points>
-          <Double fx:value="-50.0" />
-          <Double fx:value="-40.0" />
-          <Double fx:value="50.0" />
-          <Double fx:value="-40.0" />
-          <Double fx:value="0.0" />
-          <Double fx:value="60.0" />
-          <Double fx:value="-50.0" />
-          <Double fx:value="-40.0" />
-        </points>
-      </Polyline>
+      <Button fx:id="continueToEndScene" layoutX="50" layoutY="110" mnemonicParsing="false" onMouseClicked="#continueToLeaderboard" text="Continue" visible="false" />
 
-       <Button fx:id="example" text="click" onAction="#click"/>
+      <Button layoutX="282.0" layoutY="124.0" mnemonicParsing="false" text="Button" />
    </children>
 
     <stylesheets>
