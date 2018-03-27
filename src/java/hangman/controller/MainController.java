@@ -2,9 +2,12 @@ package hangman.controller;
 
 import hangman.Main;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Rectangle;
@@ -317,6 +320,24 @@ public class MainController implements Initializable
             if(event.getSource() == button)
             {
                 clickedButton(button);
+            }
+        }
+    }
+
+    /**
+     * Key listener for button
+     */
+    @FXML
+    private void typed(KeyEvent key)
+    {
+        if(key.getCode() == KeyCode.ENTER)
+        {
+            for(Button button : canClickButton.keySet())
+            {
+                if(key.getSource() == button)
+                {
+                    clickedButton(button);
+                }
             }
         }
     }
