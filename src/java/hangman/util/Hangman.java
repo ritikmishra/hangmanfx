@@ -157,7 +157,7 @@ public class Hangman
      *
      * @return The score
      */
-    public double getScore()
+    public int getScore()
     {
         int incorrectGuesses = startingLives - lives;
 
@@ -167,7 +167,7 @@ public class Hangman
             if(correctlyGuessed) { correctGuesses++; }
         }
 
-        return (correctGuesses - incorrectGuesses) / (double) wordToGuess.length();
+        return (int) (200 * (correctGuesses - incorrectGuesses) / (double) wordToGuess.length());
     }
 
     public int lettersLeft()
