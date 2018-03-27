@@ -5,7 +5,8 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Text?>
 
-<GridPane fx:id="pane" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hangman.controller.LeaderboardController">
+<?import javafx.scene.control.Button?>
+<GridPane fx:id="pane" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="400.00" minWidth="600.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hangman.controller.LeaderboardController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -15,8 +16,9 @@
     <RowConstraints minHeight="10.0" prefHeight="30.0" maxHeight="30" vgrow="NEVER" />
   </rowConstraints>
    <children>
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Score" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER"/>
-      <Text layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name" x="100.0" GridPane.halignment="CENTER" GridPane.valignment="CENTER"/>
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Timestamp" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER"/>
+       <Button fx:id="replayButton" text="Play again" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" onMouseClicked="#goToMainScene"/>
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Score" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER"/>
+      <Text layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name" x="100.0" GridPane.rowIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER"/>
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Timestamp" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER"/>
    </children>
 </GridPane>

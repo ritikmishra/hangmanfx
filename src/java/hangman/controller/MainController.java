@@ -87,6 +87,11 @@ public class MainController implements Initializable
     public Text userGuesses;
 
     /**
+     * A public reference to {@link MainController#userGuesses}. This ensures that {@link Main} can set the number of underscores when it chooses a word
+     */
+    public static Text kUserGuesses;
+
+    /**
      * A button that lets the user go to the leaderboard scene
      */
     @FXML
@@ -339,6 +344,8 @@ public class MainController implements Initializable
         // Ensure {@link Main} can access the text object
         kShowName = showName;
 
+        kUserGuesses = userGuesses;
+
         // Build the body
         body = new Shape[] { head, torso, armLeft, armRight, legLeft, legRight };
 
@@ -426,11 +433,13 @@ public class MainController implements Initializable
         {
             bodyPart.setVisible(false);
         }
+//        updateText();
     }
 
     private void updateText()
     {
-        userGuesses.setText(Main.hangman.getUserDisplay());
+        String userDisplay = Main.hangman.getUserDisplay();
+        userGuesses.setText(userDisplay);
     }
 
     /**
@@ -441,6 +450,16 @@ public class MainController implements Initializable
     @FXML
     private void continueToLeaderboard(MouseEvent mouseEvent)
     {
+        canClickButton.forEach((key, value) -> {
+            canClickButton.put(key, true);
+            key.getStyleClass().remove("clicked");
+
+    });
+        for(Shape part : body)
+        {
+            part.setVisible(false);
+        }
+        continueToEndScene.setVisible(false);
         Main.switchToLeaderboardScene();
     }
 }

@@ -14,10 +14,8 @@
 
 <AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hangman.controller.MainController">
    <children>
-      <Text fx:id="showName" layoutX="-86.0" layoutY="-94.0" stroke="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="149.99999105930328" x="100.0" y="125.0">
-         <font>
-            <Font size="20.0" />
-         </font></Text>
+
+
 
        <Path fx:id="gallows" fill="#1f93ff00" layoutX="14.0" layoutY="155.0" scaleX="3.0" scaleY="3.0" scaleZ="2.0" stroke="WHITE" strokeType="INSIDE">
           <elements>
@@ -69,6 +67,13 @@
        <Button fx:id="X" layoutX="335.0" layoutY="275.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#click" prefHeight="50.0" prefWidth="50.0" text="X" />
        <Button fx:id="Y" layoutX="385.0" layoutY="275.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#click" prefHeight="50.0" prefWidth="50.0" text="Y" />
        <Button fx:id="Z" layoutX="435.0" layoutY="275.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#click" prefHeight="50.0" prefWidth="50.0" text="Z" />
+
+
+       <Text fx:id="showName" layoutX="-86.0" layoutY="-94.0" stroke="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="149.99999105930328" x="100.0" y="125.0">
+           <font>
+               <Font size="20.0" />
+           </font>
+       </Text>
 
    </children>
 

@@ -20,12 +20,14 @@ public class Hangman
     /**
      * Create a new hangman object without a username
      */
-    private Hangman(){
+    private Hangman()
+    {
         generateNewWord();
     }
 
     /**
      * Create a new hangman object with a username
+     *
      * @param name The username
      */
     public Hangman(String name)
@@ -58,7 +60,7 @@ public class Hangman
             }
         }
 
-        takeLife();
+        if(!guessedCorrectly) { takeLife(); }
 
         return guessedCorrectly;
     }
@@ -111,7 +113,6 @@ public class Hangman
 
     /**
      * Subtract 1 from the number of lives left
-     *
      */
     private void takeLife()
     {
@@ -120,9 +121,10 @@ public class Hangman
 
     /**
      * Get a string which is safe to display to the user, because it is "unsafe" to show the user the entire word
-     *
+     * <p>
      * For example, if the user guessed the letters "e" and "t", and the word to guess is "rate" this will return
      * "_ _ t e"
+     *
      * @return A string that is safe to show to the user
      */
     public String getUserDisplay()
@@ -148,6 +150,7 @@ public class Hangman
 
     /**
      * Calculate score based on length of the word and number of incorrect guesses
+     *
      * @return The score
      */
     public double getScore()
@@ -157,7 +160,7 @@ public class Hangman
         int correctGuesses = 0;
         for(boolean correctlyGuessed : placements)
         {
-            if(correctlyGuessed) correctGuesses++;
+            if(correctlyGuessed) { correctGuesses++; }
         }
 
         return (correctGuesses - incorrectGuesses) / (double) wordToGuess.length();
@@ -168,7 +171,7 @@ public class Hangman
         int count = 0;
         for(boolean guessedLetter : placements)
         {
-            if(!guessedLetter) count++;
+            if(!guessedLetter) { count++; }
         }
         return count;
     }

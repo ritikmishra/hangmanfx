@@ -70,7 +70,7 @@ public class Main extends Application {
 
         startScene = new Scene(startRoot);
         mainScene = new Scene(mainRoot);
-        leaderboardScene = new Scene(leaderboardRoot);
+        leaderboardScene = new Scene(leaderboardRoot, 600, 30 * leaderboard.getLeaderboard().size() + 60);
 
         // Display the window
         primaryStage.setScene(startScene);
@@ -88,6 +88,8 @@ public class Main extends Application {
 
         name = username;
         MainController.kShowName.setText(name);
+
+        MainController.kUserGuesses.setText(hangman.getUserDisplay());
         window.setScene(mainScene);
     }
 
@@ -97,6 +99,7 @@ public class Main extends Application {
     public static void switchToLeaderboardScene()
     {
         leaderboard.addEntry(name, hangman.getScore());
+        leaderboard.updateFile();
         window.setScene(leaderboardScene);
     }
 
@@ -110,5 +113,11 @@ public class Main extends Application {
     public void stop()
     {
         leaderboard.updateFile();
+    }
+
+    //TODO: Reset buttons
+    public static void switchToMainScene()
+    {
+        switchToMainScene(name);
     }
 }

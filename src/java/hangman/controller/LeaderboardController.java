@@ -6,6 +6,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.HPos;
 import javafx.geometry.VPos;
+import javafx.scene.Node;
+import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.text.Text;
@@ -24,6 +27,15 @@ public class LeaderboardController implements Initializable
     @FXML
     GridPane pane;
 
+    @FXML
+    Button replayButton;
+
+    @FXML
+    private void goToMainScene(MouseEvent event)
+    {
+        Main.switchToMainScene();
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
@@ -40,8 +52,10 @@ public class LeaderboardController implements Initializable
             Text score = new Text(String.valueOf(entry.getScore()));
             Text date = new Text(entry.getTimestamp().toString());
 
+            int initialRows = getRowCount(pane);
+
             // Add them to the grid pane
-            pane.addRow(i + 1, name, score, date);
+            pane.addRow(i + initialRows, name, score, date);
 
             // Center them
             GridPane.setHalignment(name, HPos.CENTER);
@@ -60,5 +74,20 @@ public class LeaderboardController implements Initializable
 
             pane.getRowConstraints().add(rowConstraint);
         }
+    }
+
+    private int getRowCount(GridPane pane) {
+        int numRows = pane.getRowConstraints().size();
+
+        for (int i = 0; i < pane.getChildren().size(); i++) {
+            Node child = pane.getChildren().get(i);
+            if (child.isManaged()) {
+                Integer rowIndex = GridPane.getRowIndex(child);
+                if(rowIndex != null){
+                    numRows = Math.max(numRows,rowIndex+1);
+                }
+            }
+        }
+        return numRows;
     }
 }
