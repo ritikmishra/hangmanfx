@@ -1,8 +1,5 @@
 package hangman.util;
 
-import com.sun.corba.se.impl.protocol.MinimalServantCacheLocalCRDImpl;
-
-import java.time.chrono.MinguoChronology;
 import java.util.Random;
 
 /**
@@ -39,31 +36,31 @@ public class Hangman
 
 
     /**
-     * Check if the user has guessed a letter correctly
+     * Check if the user has guessed a letter correctly, and takes a life if they haven't
      *
      * @param guessedLetter which letter the user has guessed
      * @return If the user has guessed correctly
      */
-    public boolean checkIfContainLetter(String guessedLetter)
+    public boolean checkIfContainLetter(char guessedLetter)
     {
 
-        guessedLetter = guessedLetter.trim();
-
+        guessedLetter = Character.toLowerCase(guessedLetter);
         char[] letters = wordToGuess.toCharArray();
+
+        boolean guessedCorrectly = false;
 
         for(int i = 0; i < placements.length; i++)
         {
-            String ithLetter = String.valueOf(letters[i]);
-            if(guessedLetter.equalsIgnoreCase(ithLetter))
+            if(guessedLetter == wordToGuess.charAt(i))
             {
                 placements[i] = true;
-                return true;
+                guessedCorrectly = true;
             }
         }
 
         takeLife();
 
-        return false;
+        return guessedCorrectly;
     }
 
 
@@ -116,7 +113,7 @@ public class Hangman
      * Subtract 1 from the number of lives left
      *
      */
-    public void takeLife()
+    private void takeLife()
     {
         lives--;
     }
@@ -164,5 +161,15 @@ public class Hangman
         }
 
         return (correctGuesses - incorrectGuesses) / (double) wordToGuess.length();
+    }
+
+    public int lettersLeft()
+    {
+        int count = 0;
+        for(boolean guessedLetter : placements)
+        {
+            if(!guessedLetter) count++;
+        }
+        return count;
     }
 }

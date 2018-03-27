@@ -264,19 +264,29 @@ public class MainController implements Initializable
     /**
      * When the user clicks on a button to guess the letter, update the amount of lives they have
      *
-     * @param event Mouse listener
+     * @param letter The letter the user guessed
      */
     @FXML
-    private void updateLives(MouseEvent event)
+    private void updateGuess(char letter)
     {
-        updateText();
 
-        updateLives(Main.hangman.getLives());
-        Main.hangman.takeLife();
+        boolean correctlyGuessed = Main.hangman.checkIfContainLetter(letter);
 
-        if(Main.hangman.getLives() == 0)
+        if(!correctlyGuessed)
+        {
+            addBodyParts(Main.hangman.getLives());
+        }
+
+        if(Main.hangman.getLives() == 0 || Main.hangman.lettersLeft() == 0)
         {
             continueToEndScene.setVisible(true);
+
+            // Reveal the word
+            userGuesses.setText(Main.hangman.getWordToGuess());
+        }
+        else
+        {
+            updateText();
         }
     }
 
@@ -285,10 +295,10 @@ public class MainController implements Initializable
      *
      * @param lives Amount of lives
      */
-    private void updateLives(int lives)
+    private void addBodyParts(int lives)
     {
         System.out.println("lives = [" + lives + "]");
-        body[body.length - lives].setVisible(true);
+        body[body.length - lives - 1].setVisible(true);
     }
 
     /**
@@ -318,7 +328,7 @@ public class MainController implements Initializable
         {
             button.getStyleClass().add("clicked");
             canClickButton.replace(button, false);
-            System.out.println(buttonLetter.get(button));
+            updateGuess(buttonLetter.get(button));
         }
     }
 
@@ -334,54 +344,79 @@ public class MainController implements Initializable
 
         canClickButton.put(A, true);
         buttonLetter.put(A, 'A');
+
         canClickButton.put(B, true);
         buttonLetter.put(B, 'B');
+
         canClickButton.put(C, true);
         buttonLetter.put(C, 'C');
+
         canClickButton.put(D, true);
         buttonLetter.put(D, 'D');
+
         canClickButton.put(E, true);
         buttonLetter.put(E, 'E');
+
         canClickButton.put(F, true);
         buttonLetter.put(F, 'F');
+
         canClickButton.put(G, true);
         buttonLetter.put(G, 'G');
+
         canClickButton.put(H, true);
         buttonLetter.put(H, 'H');
+
         canClickButton.put(I, true);
         buttonLetter.put(I, 'I');
+
         canClickButton.put(J, true);
         buttonLetter.put(J, 'J');
+
         canClickButton.put(K, true);
         buttonLetter.put(K, 'K');
+
         canClickButton.put(L, true);
         buttonLetter.put(L, 'L');
+
         canClickButton.put(M, true);
         buttonLetter.put(M, 'M');
+
         canClickButton.put(N, true);
         buttonLetter.put(N, 'N');
+
         canClickButton.put(O, true);
         buttonLetter.put(O, 'O');
+
         canClickButton.put(P, true);
         buttonLetter.put(P, 'P');
+
         canClickButton.put(Q, true);
         buttonLetter.put(Q, 'Q');
+
         canClickButton.put(R, true);
         buttonLetter.put(R, 'R');
+
         canClickButton.put(S, true);
         buttonLetter.put(S, 'S');
+
         canClickButton.put(T, true);
         buttonLetter.put(T, 'T');
+
         canClickButton.put(U, true);
         buttonLetter.put(U, 'U');
+
         canClickButton.put(V, true);
         buttonLetter.put(V, 'V');
+
         canClickButton.put(W, true);
         buttonLetter.put(W, 'W');
+
         canClickButton.put(X, true);
         buttonLetter.put(X, 'X');
+
         canClickButton.put(Y, true);
         buttonLetter.put(Y, 'Y');
+
         canClickButton.put(Z, true);
         buttonLetter.put(Z, 'Z');
 

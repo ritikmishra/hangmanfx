@@ -24,7 +24,7 @@ public class CLIHangman
         {
 
             System.out.print("Enter a guess: ");
-            if(hangman.checkIfContainLetter(scanner.nextLine()))
+            if(hangman.checkIfContainLetter(scanner.nextLine().charAt(0)))
             {
                 System.out.println("You guessed correctly!");
 
