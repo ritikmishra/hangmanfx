@@ -22,16 +22,19 @@ public class LeaderboardEntry
      */
     private final Date timestamp;
 
+    private final String word;
+
     /**
      * Make a new leaderboard entry given the user's name and their score
      * @param name The user's name
      * @param score Their score
      */
-    public LeaderboardEntry(String name, double score)
+    public LeaderboardEntry(String name, double score, String word)
     {
         this.name = name;
         this.score = score;
         this.timestamp = new Date();
+        this.word = word;
     }
 
     /**
@@ -44,6 +47,7 @@ public class LeaderboardEntry
         name = data[0];
         score = Double.valueOf(data[1]);
         timestamp = new Date(data[2]);
+        word = data[3];
     }
 
     public double getScore()
@@ -67,7 +71,12 @@ public class LeaderboardEntry
      */
     public String toCSV()
     {
-        return name + ", " + score + ", " + timestamp.toString();
+        return name + ", " + score + ", " + timestamp.toString() + ", " + word;
 
+    }
+
+    public String getWord()
+    {
+        return word;
     }
 }

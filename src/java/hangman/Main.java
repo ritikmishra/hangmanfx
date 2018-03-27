@@ -98,7 +98,7 @@ public class Main extends Application {
      */
     public static void switchToLeaderboardScene()
     {
-        leaderboard.addEntry(name, hangman.getScore());
+        leaderboard.addEntry(name, hangman.getScore(), hangman.getWordToGuess());
         leaderboard.updateFile();
         window.setScene(leaderboardScene);
     }

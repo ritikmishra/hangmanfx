@@ -2,6 +2,7 @@ package hangman.controller;
 
 import hangman.Main;
 import hangman.util.LeaderboardEntry;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.HPos;
@@ -14,8 +15,10 @@ import javafx.scene.layout.RowConstraints;
 import javafx.scene.text.Text;
 
 import java.net.URL;
+import java.util.HashSet;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.Set;
 
 /**
  * Controls the leaderboard scene
@@ -24,6 +27,8 @@ import java.util.ResourceBundle;
  */
 public class LeaderboardController implements Initializable
 {
+    private static int INITIAL_ROWS;
+
     @FXML
     GridPane pane;
 
@@ -42,8 +47,24 @@ public class LeaderboardController implements Initializable
         // Get all the entries of the leaderboard
         List<LeaderboardEntry> leaderboardEntries = Main.leaderboard.getLeaderboard();
 
+        INITIAL_ROWS = getRowCount();
+
         // For each leaderboard entry
-        for(int i = 0; i < leaderboardEntries.size(); i++)
+        updateLeaderboard();
+    }
+
+    private void updateLeaderboard()
+    {
+        for(int i = INITIAL_ROWS; i < getRowCount(); i++)
+        {
+            deleteRow(i);
+        }
+
+        // Get all the entries of the leaderboard
+        List<LeaderboardEntry> leaderboardEntries = Main.leaderboard.getLeaderboard();
+
+        // For each leaderboard entry
+        for(int i = 0; i < Math.min(10, leaderboardEntries.size()); i++)
         {
             LeaderboardEntry entry = leaderboardEntries.get(i);
 
@@ -51,11 +72,12 @@ public class LeaderboardController implements Initializable
             Text name = new Text(entry.getName());
             Text score = new Text(String.valueOf(entry.getScore()));
             Text date = new Text(entry.getTimestamp().toString());
+            Text word = new Text(entry.getWord());
 
-            int initialRows = getRowCount(pane);
+            int currentRows = getRowCount();
 
             // Add them to the grid pane
-            pane.addRow(i + initialRows, name, score, date);
+            pane.addRow(i + currentRows, name, score, date, word);
 
             // Center them
             GridPane.setHalignment(name, HPos.CENTER);
@@ -67,6 +89,9 @@ public class LeaderboardController implements Initializable
             GridPane.setHalignment(date, HPos.CENTER);
             GridPane.setValignment(date, VPos.CENTER);
 
+            GridPane.setHalignment(word, HPos.CENTER);
+            GridPane.setValignment(word, VPos.CENTER);
+
             // Make sure that the height of the row is consistent
             RowConstraints rowConstraint = new RowConstraints();
             rowConstraint.setPrefHeight(30);
@@ -74,9 +99,15 @@ public class LeaderboardController implements Initializable
 
             pane.getRowConstraints().add(rowConstraint);
         }
+
     }
 
-    private int getRowCount(GridPane pane) {
+    @FXML
+    private void updateLeaderboard(Event event)
+    {
+        updateLeaderboard();
+    }
+    private int getRowCount() {
         int numRows = pane.getRowConstraints().size();
 
         for (int i = 0; i < pane.getChildren().size(); i++) {
@@ -89,5 +120,27 @@ public class LeaderboardController implements Initializable
             }
         }
         return numRows;
+    }
+
+    private void deleteRow(final int row) {
+        Set<Node> deleteNodes = new HashSet<>();
+        for (Node child : pane.getChildren()) {
+            // get index from child
+            Integer rowIndex = GridPane.getRowIndex(child);
+
+            // handle null values for index=0
+            int r = rowIndex == null ? 0 : rowIndex;
+
+            if (r > row) {
+                // decrement rows for rows after the deleted row
+                GridPane.setRowIndex(child, r-1);
+            } else if (r == row) {
+                // collect matching rows for deletion
+                deleteNodes.add(child);
+            }
+        }
+
+        // remove nodes from row
+        pane.getChildren().removeAll(deleteNodes);
     }
 }
