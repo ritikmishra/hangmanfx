@@ -1,6 +1,7 @@
 package hangman.controller;
 
 import hangman.Main;
+import hangman.util.LetterButtons;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -24,16 +25,8 @@ import java.util.ResourceBundle;
  */
 public class MainController implements Initializable
 {
-    /**
-     * Makes a map that gets to see if a button can be clicked again
-     */
-    private Map<Button, Boolean> canClickButton = new HashMap<>();
 
-    /**
-     * Makes it easier to return letter of the button clicked
-     */
-    private Map<Button, Character> buttonLetter = new HashMap<>();
-
+    LetterButtons buttons;
     /**
      * Displays the username in the corner
      */
@@ -99,6 +92,18 @@ public class MainController implements Initializable
      */
     @FXML
     public Button continueToEndScene;
+
+    /**
+     * The array of shapes making up the body
+     * <p>
+     * Now that they are in an array, we can easily show body parts based on the number of incorrect guesses
+     */
+    private Shape[] body;
+
+    /**
+     * A public reference to {@link MainController#showName}. This ensures that {@link Main} can set the text of the name when it receives the name
+     */
+    public static Text kShowName;
 
     /**
      * Button "A"
@@ -258,18 +263,6 @@ public class MainController implements Initializable
     public Button Z;
 
     /**
-     * The array of shapes making up the body
-     * <p>
-     * Now that they are in an array, we can easily show body parts based on the number of incorrect guesses
-     */
-    private Shape[] body;
-
-    /**
-     * A public reference to {@link MainController#showName}. This ensures that {@link Main} can set the text of the name when it receives the name
-     */
-    public static Text kShowName;
-
-    /**
      * When the user clicks on a button to guess the letter, update the amount of lives they have
      *
      * @param letter The letter the user guessed
@@ -315,13 +308,7 @@ public class MainController implements Initializable
     @FXML
     private void click(ActionEvent event)
     {
-        for(Button button : canClickButton.keySet())
-        {
-            if(event.getSource() == button)
-            {
-                clickedButton(button);
-            }
-        }
+        updateGuess(buttons.buttonLetter.get(buttons.click(event)));
     }
 
     /**
@@ -332,31 +319,16 @@ public class MainController implements Initializable
     {
         if(key.getCode() == KeyCode.ENTER)
         {
-            for(Button button : canClickButton.keySet())
+            for(Button button : buttons.canClickButton.keySet())
             {
                 if(key.getSource() == button)
                 {
-                    clickedButton(button);
+                    updateGuess(buttons.buttonLetter.get(button));
                 }
             }
         }
     }
 
-    /**
-     * Checks if it can be clicked
-     * Changes the background and doesn't let it be clicked again once clicked
-     *
-     * @param button which button is being changed
-     */
-    private void clickedButton(Button button)
-    {
-        if(canClickButton.get(button))
-        {
-            button.getStyleClass().add("clicked");
-            canClickButton.replace(button, false);
-            updateGuess(buttonLetter.get(button));
-        }
-    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources)
@@ -370,84 +342,14 @@ public class MainController implements Initializable
         // Build the body
         body = new Shape[] { head, torso, armLeft, armRight, legLeft, legRight };
 
-        canClickButton.put(A, true);
-        buttonLetter.put(A, 'A');
+        //Initialize buttons
+        buttons = new LetterButtons();
 
-        canClickButton.put(B, true);
-        buttonLetter.put(B, 'B');
+        //Adds buttons to letter buttons
+        buttons.setButtons(A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z);
 
-        canClickButton.put(C, true);
-        buttonLetter.put(C, 'C');
-
-        canClickButton.put(D, true);
-        buttonLetter.put(D, 'D');
-
-        canClickButton.put(E, true);
-        buttonLetter.put(E, 'E');
-
-        canClickButton.put(F, true);
-        buttonLetter.put(F, 'F');
-
-        canClickButton.put(G, true);
-        buttonLetter.put(G, 'G');
-
-        canClickButton.put(H, true);
-        buttonLetter.put(H, 'H');
-
-        canClickButton.put(I, true);
-        buttonLetter.put(I, 'I');
-
-        canClickButton.put(J, true);
-        buttonLetter.put(J, 'J');
-
-        canClickButton.put(K, true);
-        buttonLetter.put(K, 'K');
-
-        canClickButton.put(L, true);
-        buttonLetter.put(L, 'L');
-
-        canClickButton.put(M, true);
-        buttonLetter.put(M, 'M');
-
-        canClickButton.put(N, true);
-        buttonLetter.put(N, 'N');
-
-        canClickButton.put(O, true);
-        buttonLetter.put(O, 'O');
-
-        canClickButton.put(P, true);
-        buttonLetter.put(P, 'P');
-
-        canClickButton.put(Q, true);
-        buttonLetter.put(Q, 'Q');
-
-        canClickButton.put(R, true);
-        buttonLetter.put(R, 'R');
-
-        canClickButton.put(S, true);
-        buttonLetter.put(S, 'S');
-
-        canClickButton.put(T, true);
-        buttonLetter.put(T, 'T');
-
-        canClickButton.put(U, true);
-        buttonLetter.put(U, 'U');
-
-        canClickButton.put(V, true);
-        buttonLetter.put(V, 'V');
-
-        canClickButton.put(W, true);
-        buttonLetter.put(W, 'W');
-
-        canClickButton.put(X, true);
-        buttonLetter.put(X, 'X');
-
-        canClickButton.put(Y, true);
-        buttonLetter.put(Y, 'Y');
-
-        canClickButton.put(Z, true);
-        buttonLetter.put(Z, 'Z');
-
+        //Sets button maps
+        buttons.setButtonMaps();
 
         // hide the body
         for(Shape bodyPart : body)
@@ -471,11 +373,11 @@ public class MainController implements Initializable
     @FXML
     private void continueToLeaderboard(MouseEvent mouseEvent)
     {
-        canClickButton.forEach((key, value) -> {
-            canClickButton.put(key, true);
+        buttons.canClickButton.forEach((key, value) -> {
+            buttons.canClickButton.put(key, true);
             key.getStyleClass().remove("clicked");
 
-    });
+        });
         for(Shape part : body)
         {
             part.setVisible(false);
