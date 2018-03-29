@@ -46,8 +46,8 @@ public class LetterButtons
     {
         if(canClickButton.get(button))
         {
-            button.getStyleClass().add("clicked");
             canClickButton.replace(button, false);
+            changeColor(button);
             return true;
         }
 
@@ -64,6 +64,11 @@ public class LetterButtons
             }
         }
         return null;
+    }
+
+    public void changeColor(Button button)
+    {
+        button.getStyleClass().add("clicked");
     }
 
 }
