@@ -104,7 +104,6 @@ public class Main extends Application
         thread.start();
 
         hangman = new Hangman(username);
-        System.out.println(hangman.getWordToGuess());
 
         name = username;
         MainController.kShowName.setText(name);

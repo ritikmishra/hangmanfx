@@ -27,10 +27,7 @@
       <Text layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name" x="100.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Timestamp" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-      <Button mnemonicParsing="false" onMouseClicked="#clickRefresh" text="Refresh" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-         <cursor>
-            <Cursor fx:constant="WAIT" />
-         </cursor></Button>
+      <Button mnemonicParsing="false" onMouseClicked="#clickRefresh" text="Refresh" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER"/>
    </children>
    <cursor>
       <Cursor fx:constant="DEFAULT" />
