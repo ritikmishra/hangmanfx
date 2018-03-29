@@ -98,7 +98,7 @@ public class Hangman
             }
         }
         placements = new boolean[wordToGuess.length()];
-        System.out.println(wordToGuess);
+//        System.out.println(wordToGuess);
     }
 
     /**
