@@ -284,6 +284,7 @@ public class MainController implements Initializable
 
             // Reveal the word
             userGuesses.setText(Main.hangman.getWordToGuess());
+            Main.runTime = 0;
         }
         else
         {
@@ -324,6 +325,7 @@ public class MainController implements Initializable
                 if(key.getSource() == button)
                 {
                     updateGuess(buttons.buttonLetter.get(button));
+                    buttons.changeColor(button);
                 }
             }
         }

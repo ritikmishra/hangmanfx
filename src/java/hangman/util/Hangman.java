@@ -1,5 +1,7 @@
 package hangman.util;
 
+import hangman.Main;
+
 import java.util.HashSet;
 import java.util.Random;
 
@@ -167,7 +169,7 @@ public class Hangman
             if(correctlyGuessed) { correctGuesses++; }
         }
 
-        return (int) (200 * (correctGuesses - incorrectGuesses) / (double) wordToGuess.length());
+        return (int) (200 + (correctGuesses - incorrectGuesses) / (double) wordToGuess.length()) - Main.runTime;
     }
 
     public int lettersLeft()

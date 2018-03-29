@@ -1,5 +1,6 @@
 package hangman;
 
+import hangman.controller.LeaderboardController;
 import hangman.controller.MainController;
 import hangman.util.Hangman;
 import hangman.util.Leaderboard;
@@ -12,12 +13,17 @@ import javafx.scene.shape.MoveTo;
 
 import javafx.stage.Stage;
 
+import java.awt.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 
-public class Main extends Application {
+public class Main extends Application
+{
 
+    private static Thread thread;
+
+    public static int runTime = 0;
     /**
      * Our instance of the Hangman game. This will keep track of letters guessed and lives left for us.
      */
@@ -36,7 +42,7 @@ public class Main extends Application {
 
     /**
      * The scene to be displayed when the user is playing hangman
-     *
+     * <p>
      * Contains nodes that let the user guess a letter, view how many lives they have left, and continue to the leaderboard
      */
     private static Scene mainScene;
@@ -57,7 +63,9 @@ public class Main extends Application {
     public static Leaderboard leaderboard = new Leaderboard();
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage) throws Exception
+    {
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         // Keep a reference to the window
         window = primaryStage;
 
@@ -65,12 +73,12 @@ public class Main extends Application {
 
         // Build all 3 of our scenes
         Parent mainRoot = FXMLLoader.load(getClass().getResource("main.fxml"));
-        Parent startRoot =  FXMLLoader.load(getClass().getResource("startingScreen.fxml"));
+        Parent startRoot = FXMLLoader.load(getClass().getResource("startingScreen.fxml"));
         Parent leaderboardRoot = FXMLLoader.load(getClass().getResource("showLeaderboard.fxml"));
 
         startScene = new Scene(startRoot);
         mainScene = new Scene(mainRoot);
-        leaderboardScene = new Scene(leaderboardRoot, 600, 30 * leaderboard.getLeaderboard().size() + 60);
+        leaderboardScene = new Scene(leaderboardRoot, 600, screenSize.height);
 
         // Display the window
         primaryStage.setScene(startScene);
@@ -79,10 +87,22 @@ public class Main extends Application {
 
     /**
      * Switch from the starting scene to the main scene
+     *
      * @param username The username that the user selected when they started the scene
      */
     public static void switchToMainScene(String username)
     {
+        thread = new Thread(() -> {
+            while(true)
+            {
+                runTime++;
+                try { Thread.sleep(1000); }
+                catch(InterruptedException e) {}
+            }
+        });
+
+        thread.start();
+
         hangman = new Hangman(username);
         System.out.println(hangman.getWordToGuess());
 
@@ -98,8 +118,10 @@ public class Main extends Application {
      */
     public static void switchToLeaderboardScene()
     {
+        thread.stop();
         leaderboard.addEntry(name, hangman.getScore(), hangman.getWordToGuess());
         leaderboard.updateFile();
+
         window.setScene(leaderboardScene);
     }
 
