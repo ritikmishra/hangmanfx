@@ -2,6 +2,7 @@ package hangman.controller;
 
 import hangman.Main;
 import hangman.util.LeaderboardEntry;
+import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -9,6 +10,8 @@ import javafx.geometry.HPos;
 import javafx.geometry.VPos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
@@ -44,8 +47,7 @@ public class LeaderboardController implements Initializable
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
-        // Get all the entries of the leaderboard
-        List<LeaderboardEntry> leaderboardEntries = Main.leaderboard.getLeaderboard();
+        Main.leaderboard.updateFile();
 
         INITIAL_ROWS = getRowCount();
 
@@ -53,7 +55,7 @@ public class LeaderboardController implements Initializable
         updateLeaderboard();
     }
 
-    private void updateLeaderboard()
+    public void updateLeaderboard()
     {
         for(int i = INITIAL_ROWS; i < getRowCount(); i++)
         {
@@ -102,10 +104,26 @@ public class LeaderboardController implements Initializable
 
     }
 
+    boolean refreshed = false;
+
     @FXML
-    private void updateLeaderboard(Event event)
+    private void updateLeaderboard(KeyEvent event)
     {
-        updateLeaderboard();
+        if(!refreshed && event.getCode() == KeyCode.R)
+        {
+            updateLeaderboard();
+            refreshed = true;
+        }
+    }
+
+    @FXML
+    private void clickRefresh(MouseEvent event)
+    {
+        if(!refreshed)
+        {
+            updateLeaderboard();
+            refreshed = true;
+        }
     }
     private int getRowCount() {
         int numRows = pane.getRowConstraints().size();
