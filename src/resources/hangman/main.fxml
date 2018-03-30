@@ -1,80 +1,138 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.URL?>
-<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.shape.Ellipse?>
-<?import javafx.scene.shape.HLineTo?>
-<?import javafx.scene.shape.MoveTo?>
-<?import javafx.scene.shape.Path?>
-<?import javafx.scene.shape.Rectangle?>
-<?import javafx.scene.shape.VLineTo?>
+<?import javafx.scene.shape.*?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
+<?import java.net.URL?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+            minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0"
+            xmlns="http://javafx.com/javafx/8.0.121" fx:controller="hangman.controller.MainController">
+    <children>
+        <Path fx:id="gallows" fill="#1f93ff00" layoutX="14.0" layoutY="155.0" scaleX="3.0" scaleY="3.0" scaleZ="2.0"
+              stroke="WHITE" strokeType="INSIDE">
+            <elements>
+                <MoveTo x="100.0"/>
+                <VLineTo y="-10.0"/>
+                <HLineTo x="50.0"/>
+                <VLineTo y="100.0"/>
+                <HLineTo x="100.0"/>
+            </elements>
+        </Path>
 
-<AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hangman.controller.MainController">
-   <children>
-       <Path fx:id="gallows" fill="#1f93ff00" layoutX="14.0" layoutY="155.0" scaleX="3.0" scaleY="3.0" scaleZ="2.0" stroke="WHITE" strokeType="INSIDE">
-          <elements>
-              <MoveTo x="100.0" />
-            <VLineTo y="-10.0" />
-            <HLineTo x="50.0" />
-            <VLineTo y="100.0" />
-            <HLineTo x="100.0" />
-          </elements>
-      </Path>
+        <Ellipse fx:id="head" fill="#ffe5db" layoutX="164.0" layoutY="92.0" radiusX="25.0" radiusY="25.0"
+                 stroke="TRANSPARENT" strokeType="INSIDE"/>
+        <Rectangle fx:id="torso" arcHeight="5.0" arcWidth="5.0" fill="#ffe5db" height="73.0" layoutX="139.0"
+                   layoutY="117.0" stroke="TRANSPARENT" strokeType="INSIDE" width="50.0"/>
+        <Rectangle fx:id="armRight" arcHeight="5.0" arcWidth="5.0" fill="#ffe5db" height="12.0" layoutX="177.0"
+                   layoutY="137.0" rotate="72.9" stroke="TRANSPARENT" strokeType="INSIDE" width="50.0"/>
+        <Rectangle fx:id="armLeft" arcHeight="5.0" arcWidth="5.0" fill="#ffe5db" height="12.0" layoutX="107.0"
+                   layoutY="137.0" rotate="-88.2" stroke="TRANSPARENT" strokeType="INSIDE" width="50.0"/>
+        <Rectangle fx:id="legLeft" arcHeight="5.0" arcWidth="5.0" fill="#ffe5db" height="12.0" layoutX="120.0"
+                   layoutY="205.0" rotate="-78.7" stroke="TRANSPARENT" strokeType="INSIDE" width="45.0"/>
+        <Rectangle fx:id="legRight" arcHeight="5.0" arcWidth="5.0" fill="#ffe5db" height="12.0" layoutX="160.0"
+                   layoutY="205.0" rotate="78.7" stroke="TRANSPARENT" strokeType="INSIDE" width="45.0"/>
 
-      <Ellipse fx:id="head" fill="#ffe5db" layoutX="164.0" layoutY="92.0" radiusX="25.0" radiusY="25.0" stroke="TRANSPARENT" strokeType="INSIDE" />
-      <Rectangle fx:id="torso" arcHeight="5.0" arcWidth="5.0" fill="#ffe5db" height="73.0" layoutX="139.0" layoutY="117.0" stroke="TRANSPARENT" strokeType="INSIDE" width="50.0" />
-      <Rectangle fx:id="armRight" arcHeight="5.0" arcWidth="5.0" fill="#ffe5db" height="12.0" layoutX="177.0" layoutY="137.0" rotate="72.9" stroke="TRANSPARENT" strokeType="INSIDE" width="50.0" />
-      <Rectangle fx:id="armLeft" arcHeight="5.0" arcWidth="5.0" fill="#ffe5db" height="12.0" layoutX="107.0" layoutY="137.0" rotate="-88.2" stroke="TRANSPARENT" strokeType="INSIDE" width="50.0" />
-      <Rectangle fx:id="legLeft" arcHeight="5.0" arcWidth="5.0" fill="#ffe5db" height="12.0" layoutX="120.0" layoutY="205.0" rotate="-78.7" stroke="TRANSPARENT" strokeType="INSIDE" width="45.0" />
-       <Rectangle fx:id="legRight" arcHeight="5.0" arcWidth="5.0" fill="#ffe5db" height="12.0" layoutX="160.0" layoutY="205.0" rotate="78.7" stroke="TRANSPARENT" strokeType="INSIDE" width="45.0" />
+        <Text fx:id="userGuesses" layoutX="250.0" layoutY="92.0" stroke="WHITE" strokeType="OUTSIDE" strokeWidth="0.0"
+              text="_ _ _ _ _ _ _ _ _ _" textAlignment="CENTER">
+            <font>
+                <Font size="45.0"/>
+            </font>
+        </Text>
+        <Button fx:id="continueToEndScene" layoutX="50" layoutY="110" mnemonicParsing="false"
+                onMouseClicked="#continueToLeaderboard" text="Continue" visible="false"/>
 
-      <Text fx:id="userGuesses" layoutX="250.0" layoutY="92.0" stroke="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="_ _ _ _ _ _ _ _ _ _" textAlignment="CENTER">
-         <font>
-            <Font size="45.0" />
-         </font>
-      </Text>
-      <Button fx:id="continueToEndScene" layoutX="50" layoutY="110" mnemonicParsing="false" onMouseClicked="#continueToLeaderboard" text="Continue" visible="false" />
+        <Button fx:id="A" layoutX="235.0" layoutY="125.0" minHeight="-Infinity" minWidth="-Infinity"
+                mnemonicParsing="false" onAction="#click" onKeyPressed="#typed" prefHeight="50.0" prefWidth="50.0"
+                text="A"/>
+        <Button fx:id="B" layoutX="285.0" layoutY="125.0" minHeight="-Infinity" minWidth="-Infinity"
+                mnemonicParsing="false" onAction="#click" onKeyPressed="#typed" prefHeight="50.0" prefWidth="50.0"
+                text="B"/>
+        <Button fx:id="C" layoutX="335.0" layoutY="125.0" minHeight="-Infinity" minWidth="-Infinity"
+                mnemonicParsing="false" onAction="#click" onKeyPressed="#typed" prefHeight="50.0" prefWidth="50.0"
+                text="C"/>
+        <Button fx:id="D" layoutX="385.0" layoutY="125.0" minHeight="-Infinity" minWidth="-Infinity"
+                mnemonicParsing="false" onAction="#click" onKeyPressed="#typed" prefHeight="50.0" prefWidth="50.0"
+                text="D"/>
+        <Button fx:id="E" layoutX="435.0" layoutY="125.0" minHeight="-Infinity" minWidth="-Infinity"
+                mnemonicParsing="false" onAction="#click" onKeyPressed="#typed" prefHeight="50.0" prefWidth="50.0"
+                text="E"/>
+        <Button fx:id="F" layoutX="485.0" layoutY="125.0" minHeight="-Infinity" minWidth="-Infinity"
+                mnemonicParsing="false" onAction="#click" onKeyPressed="#typed" prefHeight="50.0" prefWidth="50.0"
+                text="F"/>
+        <Button fx:id="G" layoutX="535.0" layoutY="125.0" minHeight="-Infinity" minWidth="-Infinity"
+                mnemonicParsing="false" onAction="#click" onKeyPressed="#typed" prefHeight="50.0" prefWidth="50.0"
+                text="G"/>
+        <Button fx:id="H" layoutX="235.0" layoutY="175.0" minHeight="-Infinity" minWidth="-Infinity"
+                mnemonicParsing="false" onAction="#click" onKeyPressed="#typed" prefHeight="50.0" prefWidth="50.0"
+                text="H"/>
+        <Button fx:id="I" layoutX="285.0" layoutY="175.0" minHeight="-Infinity" minWidth="-Infinity"
+                mnemonicParsing="false" onAction="#click" onKeyPressed="#typed" prefHeight="50.0" prefWidth="50.0"
+                text="I"/>
+        <Button fx:id="J" layoutX="335.0" layoutY="175.0" minHeight="-Infinity" minWidth="-Infinity"
+                mnemonicParsing="false" onAction="#click" onKeyPressed="#typed" prefHeight="50.0" prefWidth="50.0"
+                text="J"/>
+        <Button fx:id="K" layoutX="385.0" layoutY="175.0" minHeight="-Infinity" minWidth="-Infinity"
+                mnemonicParsing="false" onAction="#click" onKeyPressed="#typed" prefHeight="50.0" prefWidth="50.0"
+                text="K"/>
+        <Button fx:id="L" layoutX="435.0" layoutY="175.0" minHeight="-Infinity" minWidth="-Infinity"
+                mnemonicParsing="false" onAction="#click" onKeyPressed="#typed" prefHeight="50.0" prefWidth="50.0"
+                text="L"/>
+        <Button fx:id="M" layoutX="485.0" layoutY="175.0" minHeight="-Infinity" minWidth="-Infinity"
+                mnemonicParsing="false" onAction="#click" onKeyPressed="#typed" prefHeight="50.0" prefWidth="50.0"
+                text="M"/>
+        <Button fx:id="N" layoutX="535.0" layoutY="175.0" minHeight="-Infinity" minWidth="-Infinity"
+                mnemonicParsing="false" onAction="#click" onKeyPressed="#typed" prefHeight="50.0" prefWidth="50.0"
+                text="N"/>
+        <Button fx:id="O" layoutX="235.0" layoutY="225.0" minHeight="-Infinity" minWidth="-Infinity"
+                mnemonicParsing="false" onAction="#click" onKeyPressed="#typed" prefHeight="50.0" prefWidth="50.0"
+                text="O"/>
+        <Button fx:id="P" layoutX="285.0" layoutY="225.0" minHeight="-Infinity" minWidth="-Infinity"
+                mnemonicParsing="false" onAction="#click" onKeyPressed="#typed" prefHeight="50.0" prefWidth="50.0"
+                text="P"/>
+        <Button fx:id="Q" layoutX="335.0" layoutY="225.0" minHeight="-Infinity" minWidth="-Infinity"
+                mnemonicParsing="false" onAction="#click" onKeyPressed="#typed" prefHeight="50.0" prefWidth="50.0"
+                text="Q"/>
+        <Button fx:id="R" layoutX="385.0" layoutY="225.0" minHeight="-Infinity" minWidth="-Infinity"
+                mnemonicParsing="false" onAction="#click" onKeyPressed="#typed" prefHeight="50.0" prefWidth="50.0"
+                text="R"/>
+        <Button fx:id="S" layoutX="435.0" layoutY="225.0" minHeight="-Infinity" minWidth="-Infinity"
+                mnemonicParsing="false" onAction="#click" onKeyPressed="#typed" prefHeight="50.0" prefWidth="50.0"
+                text="S"/>
+        <Button fx:id="T" layoutX="485.0" layoutY="225.0" minHeight="-Infinity" minWidth="-Infinity"
+                mnemonicParsing="false" onAction="#click" onKeyPressed="#typed" prefHeight="50.0" prefWidth="50.0"
+                text="T"/>
+        <Button fx:id="U" layoutX="535.0" layoutY="225.0" minHeight="-Infinity" minWidth="-Infinity"
+                mnemonicParsing="false" onAction="#click" onKeyPressed="#typed" prefHeight="50.0" prefWidth="50.0"
+                text="U"/>
+        <Button fx:id="V" layoutX="235.0" layoutY="275.0" minHeight="-Infinity" minWidth="-Infinity"
+                mnemonicParsing="false" onAction="#click" onKeyPressed="#typed" prefHeight="50.0" prefWidth="50.0"
+                text="V"/>
+        <Button fx:id="W" layoutX="285.0" layoutY="275.0" minHeight="-Infinity" minWidth="-Infinity"
+                mnemonicParsing="false" onAction="#click" onKeyPressed="#typed" prefHeight="50.0" prefWidth="50.0"
+                text="W"/>
+        <Button fx:id="X" layoutX="335.0" layoutY="275.0" minHeight="-Infinity" minWidth="-Infinity"
+                mnemonicParsing="false" onAction="#click" onKeyPressed="#typed" prefHeight="50.0" prefWidth="50.0"
+                text="X"/>
+        <Button fx:id="Y" layoutX="385.0" layoutY="275.0" minHeight="-Infinity" minWidth="-Infinity"
+                mnemonicParsing="false" onAction="#click" onKeyPressed="#typed" prefHeight="50.0" prefWidth="50.0"
+                text="Y"/>
+        <Button fx:id="Z" layoutX="435.0" layoutY="275.0" minHeight="-Infinity" minWidth="-Infinity"
+                mnemonicParsing="false" onAction="#click" onKeyPressed="#typed" prefHeight="50.0" prefWidth="50.0"
+                text="Z"/>
 
-       <Button fx:id="A" layoutX="235.0" layoutY="125.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#click" onKeyPressed="#typed" prefHeight="50.0" prefWidth="50.0" text="A" />
-       <Button fx:id="B" layoutX="285.0" layoutY="125.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#click" onKeyPressed="#typed" prefHeight="50.0" prefWidth="50.0" text="B" />
-       <Button fx:id="C" layoutX="335.0" layoutY="125.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#click" onKeyPressed="#typed" prefHeight="50.0" prefWidth="50.0" text="C" />
-       <Button fx:id="D" layoutX="385.0" layoutY="125.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#click" onKeyPressed="#typed" prefHeight="50.0" prefWidth="50.0" text="D" />
-       <Button fx:id="E" layoutX="435.0" layoutY="125.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#click" onKeyPressed="#typed" prefHeight="50.0" prefWidth="50.0" text="E" />
-       <Button fx:id="F" layoutX="485.0" layoutY="125.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#click" onKeyPressed="#typed" prefHeight="50.0" prefWidth="50.0" text="F" />
-       <Button fx:id="G" layoutX="535.0" layoutY="125.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#click" onKeyPressed="#typed" prefHeight="50.0" prefWidth="50.0" text="G" />
-       <Button fx:id="H" layoutX="235.0" layoutY="175.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#click" onKeyPressed="#typed" prefHeight="50.0" prefWidth="50.0" text="H" />
-       <Button fx:id="I" layoutX="285.0" layoutY="175.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#click" onKeyPressed="#typed" prefHeight="50.0" prefWidth="50.0" text="I" />
-       <Button fx:id="J" layoutX="335.0" layoutY="175.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#click" onKeyPressed="#typed" prefHeight="50.0" prefWidth="50.0" text="J" />
-       <Button fx:id="K" layoutX="385.0" layoutY="175.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#click" onKeyPressed="#typed" prefHeight="50.0" prefWidth="50.0" text="K" />
-       <Button fx:id="L" layoutX="435.0" layoutY="175.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#click" onKeyPressed="#typed" prefHeight="50.0" prefWidth="50.0" text="L" />
-       <Button fx:id="M" layoutX="485.0" layoutY="175.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#click" onKeyPressed="#typed" prefHeight="50.0" prefWidth="50.0" text="M" />
-       <Button fx:id="N" layoutX="535.0" layoutY="175.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#click" onKeyPressed="#typed" prefHeight="50.0" prefWidth="50.0" text="N" />
-       <Button fx:id="O" layoutX="235.0" layoutY="225.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#click" onKeyPressed="#typed" prefHeight="50.0" prefWidth="50.0" text="O" />
-       <Button fx:id="P" layoutX="285.0" layoutY="225.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#click" onKeyPressed="#typed" prefHeight="50.0" prefWidth="50.0" text="P" />
-       <Button fx:id="Q" layoutX="335.0" layoutY="225.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#click" onKeyPressed="#typed" prefHeight="50.0" prefWidth="50.0" text="Q" />
-       <Button fx:id="R" layoutX="385.0" layoutY="225.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#click" onKeyPressed="#typed" prefHeight="50.0" prefWidth="50.0" text="R" />
-       <Button fx:id="S" layoutX="435.0" layoutY="225.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#click" onKeyPressed="#typed" prefHeight="50.0" prefWidth="50.0" text="S" />
-       <Button fx:id="T" layoutX="485.0" layoutY="225.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#click" onKeyPressed="#typed" prefHeight="50.0" prefWidth="50.0" text="T" />
-       <Button fx:id="U" layoutX="535.0" layoutY="225.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#click" onKeyPressed="#typed" prefHeight="50.0" prefWidth="50.0" text="U" />
-       <Button fx:id="V" layoutX="235.0" layoutY="275.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#click" onKeyPressed="#typed" prefHeight="50.0" prefWidth="50.0" text="V" />
-       <Button fx:id="W" layoutX="285.0" layoutY="275.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#click" onKeyPressed="#typed" prefHeight="50.0" prefWidth="50.0" text="W" />
-       <Button fx:id="X" layoutX="335.0" layoutY="275.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#click" onKeyPressed="#typed" prefHeight="50.0" prefWidth="50.0" text="X" />
-       <Button fx:id="Y" layoutX="385.0" layoutY="275.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#click" onKeyPressed="#typed" prefHeight="50.0" prefWidth="50.0" text="Y" />
-       <Button fx:id="Z" layoutX="435.0" layoutY="275.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#click" onKeyPressed="#typed" prefHeight="50.0" prefWidth="50.0" text="Z" />
 
+        <Text fx:id="showName" layoutX="-86.0" layoutY="-94.0" stroke="WHITE" strokeType="OUTSIDE" strokeWidth="0.0"
+              text="Text" wrappingWidth="400" x="100.0" y="125.0">
+            <font>
+                <Font size="20.0"/>
+            </font>
+        </Text>
 
-       <Text fx:id="showName" layoutX="-86.0" layoutY="-94.0" stroke="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="400" x="100.0" y="125.0">
-           <font>
-               <Font size="20.0" />
-           </font>
-       </Text>
-
-   </children>
+    </children>
 
     <stylesheets>
-        <URL value="@Main.css" />
+        <URL value="@Main.css"/>
     </stylesheets>
 </AnchorPane>

@@ -3,7 +3,6 @@ package hangman.controller;
 import hangman.Main;
 import hangman.util.LetterButtons;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -16,8 +15,6 @@ import javafx.scene.shape.Shape;
 import javafx.scene.text.Text;
 
 import java.net.URL;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.ResourceBundle;
 
 /**
@@ -26,241 +23,202 @@ import java.util.ResourceBundle;
 public class MainController implements Initializable
 {
 
-    LetterButtons buttons;
+    /**
+     * A public reference to {@link MainController#userGuesses}. This ensures that {@link Main} can set the number of underscores when it chooses a word
+     */
+    public static Text kUserGuesses;
+    /**
+     * A public reference to {@link MainController#showName}. This ensures that {@link Main} can set the text of the name when it receives the name
+     */
+    public static Text kShowName;
     /**
      * Displays the username in the corner
      */
     @FXML
     public Text showName;
-
-
     /**
      * Displays the head of the corpse on the gallows
      * Hidden by default
      */
     @FXML
     public Ellipse head;
-
     /**
      * Displays the body of the corpse on the gallows
      * Hidden by default
      */
     @FXML
     public Rectangle torso;
-
     /**
      * Displays the left arm of the corpse on the gallows
      * Hidden by default
      */
     @FXML
     public Rectangle armLeft;
-
     /**
      * Displays the right arm of the corpse on the gallows
      * Hidden by default
      */
     @FXML
     public Rectangle armRight;
-
     /**
      * Displays the left leg of the corpse on the gallows
      * Hidden by default
      */
     @FXML
     public Rectangle legLeft;
-
     /**
      * Displays the right leg of the corpse on the gallows
      * Hidden by default
      */
     @FXML
     public Rectangle legRight;
-
     /**
      * Displays the letters the user has correctly guessed, and the number of letters in the word
      */
     @FXML
     public Text userGuesses;
-
-    /**
-     * A public reference to {@link MainController#userGuesses}. This ensures that {@link Main} can set the number of underscores when it chooses a word
-     */
-    public static Text kUserGuesses;
-
     /**
      * A button that lets the user go to the leaderboard scene
      */
     @FXML
     public Button continueToEndScene;
-
+    /**
+     * Button "A"
+     */
+    @FXML
+    public Button A;
+    /**
+     * Button "B"
+     */
+    @FXML
+    public Button B;
+    /**
+     * Button "C"
+     */
+    @FXML
+    public Button C;
+    /**
+     * Button "D"
+     */
+    @FXML
+    public Button D;
+    /**
+     * Button "E"
+     */
+    @FXML
+    public Button E;
+    /**
+     * Button "F"
+     */
+    @FXML
+    public Button F;
+    /**
+     * Button "G"
+     */
+    @FXML
+    public Button G;
+    /**
+     * Button "H"
+     */
+    @FXML
+    public Button H;
+    /**
+     * Button "I"
+     */
+    @FXML
+    public Button I;
+    /**
+     * Button "J"
+     */
+    @FXML
+    public Button J;
+    /**
+     * Button "K"
+     */
+    @FXML
+    public Button K;
+    /**
+     * Button "L"
+     */
+    @FXML
+    public Button L;
+    /**
+     * Button "M"
+     */
+    @FXML
+    public Button M;
+    /**
+     * Button "N"
+     */
+    @FXML
+    public Button N;
+    /**
+     * Button "O"
+     */
+    @FXML
+    public Button O;
+    /**
+     * Button "P"
+     */
+    @FXML
+    public Button P;
+    /**
+     * Button "Q"
+     */
+    @FXML
+    public Button Q;
+    /**
+     * Button "R"
+     */
+    @FXML
+    public Button R;
+    /**
+     * Button "S"
+     */
+    @FXML
+    public Button S;
+    /**
+     * Button "T"
+     */
+    @FXML
+    public Button T;
+    /**
+     * Button "U"
+     */
+    @FXML
+    public Button U;
+    /**
+     * Button "V"
+     */
+    @FXML
+    public Button V;
+    /**
+     * Button "W"
+     */
+    @FXML
+    public Button W;
+    /**
+     * Button "X"
+     */
+    @FXML
+    public Button X;
+    /**
+     * Button "Y"
+     */
+    @FXML
+    public Button Y;
+    /**
+     * Button "Z"
+     */
+    @FXML
+    public Button Z;
+    LetterButtons buttons;
     /**
      * The array of shapes making up the body
      * <p>
      * Now that they are in an array, we can easily show body parts based on the number of incorrect guesses
      */
     private Shape[] body;
-
-    /**
-     * A public reference to {@link MainController#showName}. This ensures that {@link Main} can set the text of the name when it receives the name
-     */
-    public static Text kShowName;
-
-    /**
-     * Button "A"
-     */
-    @FXML
-    public Button A;
-
-    /**
-     * Button "B"
-     */
-    @FXML
-    public Button B;
-
-    /**
-     * Button "C"
-     */
-    @FXML
-    public Button C;
-
-    /**
-     * Button "D"
-     */
-    @FXML
-    public Button D;
-
-    /**
-     * Button "E"
-     */
-    @FXML
-    public Button E;
-
-    /**
-     * Button "F"
-     */
-    @FXML
-    public Button F;
-
-    /**
-     * Button "G"
-     */
-    @FXML
-    public Button G;
-
-    /**
-     * Button "H"
-     */
-    @FXML
-    public Button H;
-
-    /**
-     * Button "I"
-     */
-    @FXML
-    public Button I;
-
-    /**
-     * Button "J"
-     */
-    @FXML
-    public Button J;
-
-    /**
-     * Button "K"
-     */
-    @FXML
-    public Button K;
-
-    /**
-     * Button "L"
-     */
-    @FXML
-    public Button L;
-
-    /**
-     * Button "M"
-     */
-    @FXML
-    public Button M;
-
-    /**
-     * Button "N"
-     */
-    @FXML
-    public Button N;
-
-    /**
-     * Button "O"
-     */
-    @FXML
-    public Button O;
-
-    /**
-     * Button "P"
-     */
-    @FXML
-    public Button P;
-
-    /**
-     * Button "Q"
-     */
-    @FXML
-    public Button Q;
-
-    /**
-     * Button "R"
-     */
-    @FXML
-    public Button R;
-
-    /**
-     * Button "S"
-     */
-    @FXML
-    public Button S;
-
-    /**
-     * Button "T"
-     */
-    @FXML
-    public Button T;
-
-    /**
-     * Button "U"
-     */
-    @FXML
-    public Button U;
-
-    /**
-     * Button "V"
-     */
-    @FXML
-    public Button V;
-
-    /**
-     * Button "W"
-     */
-    @FXML
-    public Button W;
-
-    /**
-     * Button "X"
-     */
-    @FXML
-    public Button X;
-
-
-    /**
-     * Button "Y"
-     */
-    @FXML
-    public Button Y;
-
-    /**
-     * Button "Z"
-     */
-    @FXML
-    public Button Z;
 
     /**
      * When the user clicks on a button to guess the letter, update the amount of lives they have

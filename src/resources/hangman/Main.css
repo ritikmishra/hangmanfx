@@ -1,27 +1,22 @@
-.clicked
-{
+.clicked {
     -fx-background-color: grey;
 }
 
-.button:hover
-{
+.button:hover {
     -fx-border-width: 3px;
     -fx-border-color: yellow;
 }
 
-.button:focused
-{
+.button:focused {
     -fx-border-width: 3px;
     -fx-border-color: black;
 }
 
-.button
-{
+.button {
     -fx-border-width: 0px;
     -fx-border-color: none;
 }
 
-#pane
-{
+#pane {
     -fx-background-image: url("Hangman.png") no-repeat;
 }

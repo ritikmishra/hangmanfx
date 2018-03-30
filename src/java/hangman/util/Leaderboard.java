@@ -43,7 +43,7 @@ public class Leaderboard
             for(String entry : entries)
             {
                 if(entry.length() != 0)
-                    result.add(new LeaderboardEntry(entry));
+                { result.add(new LeaderboardEntry(entry)); }
             }
         }
         catch(IOException e)

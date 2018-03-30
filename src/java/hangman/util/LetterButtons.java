@@ -2,8 +2,6 @@ package hangman.util;
 
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 
 import java.util.HashMap;
 import java.util.Map;

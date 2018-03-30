@@ -28,8 +28,9 @@ public class LeaderboardEntry
 
     /**
      * Make a new leaderboard entry given the user's name and their score
-     * @param name The user's name
-     * @param score Their score
+     *
+     * @param name               The user's name
+     * @param score              Their score
      * @param elapsedTimeSeconds
      */
     public LeaderboardEntry(String name, double score, String word, double elapsedTimeSeconds)
@@ -43,6 +44,7 @@ public class LeaderboardEntry
 
     /**
      * Make a new leaderboard entry given the row in the CSV for that entry
+     *
      * @param entry the row in the CSV for that entry
      */
     public LeaderboardEntry(String entry)
@@ -72,6 +74,7 @@ public class LeaderboardEntry
 
     /**
      * Turn this leaderboard entry into a row in a CSV
+     *
      * @return The name, score, and timestamp of the leaderboard entry, separated by commas
      */
     public String toCSV()

@@ -1,23 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.URL?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
-
-<AnchorPane fx:id="pane" onKeyPressed="#hitStartEnter" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hangman.controller.StartSceneController">
-   <children>
-      <TextField fx:id="inputName" layoutX="133.0" layoutY="200.0" prefHeight="47.0" prefWidth="350.0" />
-      <Button fx:id="submitName" layoutX="369.0" layoutY="293.0" mnemonicParsing="false" onAction="#continueAction" prefHeight="39.0" prefWidth="159.0" text="Continue" />
-      <Label contentDisplay="CENTER" layoutX="115.0" layoutY="67.0" prefHeight="93.0" prefWidth="387.0" text="Enter name:" textAlignment="CENTER" textFill="WHITE">
-         <font>
-            <Font size="63.0" />
-         </font>
-      </Label>
-   </children>
+<?import java.net.URL?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="pane" onKeyPressed="#hitStartEnter" maxHeight="-Infinity" maxWidth="-Infinity"
+            minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0"
+            xmlns="http://javafx.com/javafx/8.0.121" fx:controller="hangman.controller.StartSceneController">
+    <children>
+        <TextField fx:id="inputName" layoutX="133.0" layoutY="200.0" prefHeight="47.0" prefWidth="350.0"/>
+        <Button fx:id="submitName" layoutX="369.0" layoutY="293.0" mnemonicParsing="false" onAction="#continueAction"
+                prefHeight="39.0" prefWidth="159.0" text="Continue"/>
+        <Label contentDisplay="CENTER" layoutX="115.0" layoutY="67.0" prefHeight="93.0" prefWidth="387.0"
+               text="Enter name:" textAlignment="CENTER" textFill="WHITE">
+            <font>
+                <Font size="63.0"/>
+            </font>
+        </Label>
+    </children>
     <stylesheets>
-        <URL value="@StartScreen.css" />
+        <URL value="@StartScreen.css"/>
     </stylesheets>
 </AnchorPane>

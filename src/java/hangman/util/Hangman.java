@@ -47,6 +47,25 @@ public class Hangman
         this.name = name;
     }
 
+    /**
+     * Gets the difficulty of the word
+     */
+    public static double getWordDifficulty(String wordToGuess)
+    {
+        double count = 0;
+
+        // Eliminate duplicates
+        HashSet<Character> letterSet = new HashSet<Character>();
+        for(char letter : wordToGuess.toCharArray()) { letterSet.add(letter); }
+
+        // More frequent letters are less hard to guess
+        for(char letter : letterSet)
+        {
+            count += LARGEST_FREQ - letterFrequency.get(letter);
+        }
+
+        return count;
+    }
 
     /**
      * Check if the user has guessed a letter correctly, and takes a life if they haven't
@@ -75,7 +94,6 @@ public class Hangman
 
         return guessedCorrectly;
     }
-
 
     /**
      * Generate a new word and assign it to {@link Hangman#wordToGuess}
@@ -187,26 +205,6 @@ public class Hangman
         return count;
     }
 
-    /**
-     * Gets the difficulty of the word
-     */
-    public static double getWordDifficulty(String wordToGuess)
-    {
-        double count = 0;
-
-        // Eliminate duplicates
-        HashSet<Character> letterSet = new HashSet<Character>();
-        for(char letter : wordToGuess.toCharArray()) { letterSet.add(letter); }
-
-        // More frequent letters are less hard to guess
-        for(char letter : letterSet)
-        {
-            count += LARGEST_FREQ - letterFrequency.get(letter);
-        }
-
-        return count;
-    }
-
     public double getWordDifficulty()
     {
         return getWordDifficulty(wordToGuess);
@@ -214,6 +212,6 @@ public class Hangman
 
     public double getElapsedTimeSeconds()
     {
-        return (Date.from(Instant.now()).getTime() - whenCreated.getTime()) / 100D ;
+        return (Date.from(Instant.now()).getTime() - whenCreated.getTime()) / 100D;
     }
 }

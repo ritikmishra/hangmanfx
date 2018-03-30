@@ -1,61 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.SplitPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.text.Text?>
-
-<SplitPane dividerPositions="0.2" orientation="VERTICAL" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hangman.controller.LeaderboardController">
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<SplitPane xmlns:fx="http://javafx.com/fxml/1" dividerPositions="0.2" orientation="VERTICAL"
+           xmlns="http://javafx.com/javafx/8.0.121" fx:controller="hangman.controller.LeaderboardController">
     <items>
-        <GridPane alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minWidth="600.0" onKeyPressed="#updateLeaderboard" prefWidth="600.0">
+        <GridPane alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minWidth="600.0"
+                  onKeyPressed="#updateLeaderboard" prefWidth="600.0">
             <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
             </columnConstraints>
             <rowConstraints>
-                <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
-                <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+                <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="NEVER"/>
+                <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="NEVER"/>
             </rowConstraints>
             <children>
-                <Button fx:id="replayButton" onMouseClicked="#goToMainScene" text="Play again" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                <Button fx:id="replayButton" onMouseClicked="#goToMainScene" text="Play again" GridPane.columnIndex="1"
+                        GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                     <cursor>
-                        <Cursor fx:constant="HAND" />
+                        <Cursor fx:constant="HAND"/>
                     </cursor>
                 </Button>
-                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Score" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-                <Text layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name" x="100.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Date" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Word to guess" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Time Elapsed" GridPane.columnIndex="4" GridPane.rowIndex="1" />
-                <Button mnemonicParsing="false" onMouseClicked="#clickRefresh" text="Refresh" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Score" GridPane.columnIndex="1"
+                      GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER"/>
+                <Text layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name" x="100.0"
+                      GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER"/>
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Date" GridPane.columnIndex="2"
+                      GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER"/>
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Word to guess" GridPane.columnIndex="3"
+                      GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER"/>
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Time Elapsed" GridPane.columnIndex="4"
+                      GridPane.rowIndex="1"/>
+                <Button mnemonicParsing="false" onMouseClicked="#updateLeaderboard" text="Refresh"
+                        GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER"/>
             </children>
             <cursor>
-                <Cursor fx:constant="DEFAULT" />
+                <Cursor fx:constant="DEFAULT"/>
             </cursor>
         </GridPane>
-      <ScrollPane fitToHeight="true" fitToWidth="true" pannable="true">
-         <content>
-              <GridPane fx:id="pane">
-                  <columnConstraints>
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        <ScrollPane fitToHeight="true" fitToWidth="true" pannable="true">
+            <content>
+                <GridPane fx:id="pane">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
 
-                  </columnConstraints>
-                  <rowConstraints>
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  </rowConstraints>
-              </GridPane>
-         </content>
-      </ScrollPane>
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                    </rowConstraints>
+                </GridPane>
+            </content>
+        </ScrollPane>
     </items>
 </SplitPane>
