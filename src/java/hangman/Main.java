@@ -118,7 +118,7 @@ public class Main extends Application
     public static void switchToLeaderboardScene()
     {
         thread.stop();
-        leaderboard.addEntry(name, hangman.getScore(), hangman.getWordToGuess());
+        leaderboard.addEntry(name, hangman.getScore(), hangman.getWordToGuess(), hangman.getElapsedTimeSeconds());
         leaderboard.updateFile();
 
         window.setScene(leaderboardScene);

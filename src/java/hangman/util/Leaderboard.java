@@ -53,9 +53,9 @@ public class Leaderboard
         return result;
     }
 
-    public void addEntry(String name, double score, String word)
+    public void addEntry(String name, double score, String word, double timeElapsed)
     {
-        addEntry(new LeaderboardEntry(name, score, word));
+        addEntry(new LeaderboardEntry(name, score, word, timeElapsed));
     }
 
     public void addEntry(LeaderboardEntry entry)

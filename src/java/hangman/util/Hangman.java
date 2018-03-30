@@ -2,6 +2,8 @@ package hangman.util;
 
 import hangman.Main;
 
+import java.time.Instant;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Random;
 
@@ -21,6 +23,8 @@ public class Hangman
 
     private boolean[] placements;
 
+    private Date whenCreated;
+
     private String name;
 
     /**
@@ -29,6 +33,7 @@ public class Hangman
     private Hangman()
     {
         generateNewWord();
+        whenCreated = new Date();
     }
 
     /**
@@ -205,5 +210,10 @@ public class Hangman
     public double getWordDifficulty()
     {
         return getWordDifficulty(wordToGuess);
+    }
+
+    public double getElapsedTimeSeconds()
+    {
+        return (Date.from(Instant.now()).getTime() - whenCreated.getTime()) / 100D ;
     }
 }
